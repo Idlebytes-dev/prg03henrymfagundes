@@ -4,7 +4,9 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 
 ## Atividades do Curso
 - [Atividade 01: Documento de Especificação de Requisitos (DER)](ATIVIDADES/ATIVIDADE%2001%20-%20DOCUMENTO%20REQUISITOS/DER.md)
-- [Atividade 02: Exercícios LearnGit](ATIVIDADES/ATIVIDADE%2002%20-%20LEARNGIT)
+- [Atividade 02: Exercícios LearnGit (Local)](ATIVIDADES/ATIVIDADE%2002%20-%20LEARNGIT)
+- [Atividade 03: Exercícios LearnGit (Remote) e Pull Request](ATIVIDADES/ATIVIDADE%2003%20-%20LEARNGIT)
+
 
 ## Stack Tecnológica
 - **Java SE 25** (JDK 25)
