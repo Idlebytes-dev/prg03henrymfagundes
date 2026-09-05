@@ -40,7 +40,7 @@
                       <Component id="txtLogin" linkSize="2" alignment="1" min="-2" pref="246" max="-2" attributes="0"/>
                   </Group>
                   <Component id="lblHaveAccount" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblClickToSignUp" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblClickToSignup" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="99" max="32767" attributes="0"/>
           </Group>
@@ -68,7 +68,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblHaveAccount" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblClickToSignUp" min="-2" max="-2" attributes="0"/>
+              <Component id="lblClickToSignup" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="lblResult" min="-2" pref="67" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -147,7 +147,7 @@
         <Property name="text" type="java.lang.String" value="Nao tenho conta?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblClickToSignUp">
+    <Component class="javax.swing.JLabel" name="lblClickToSignup">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastre-se"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -155,7 +155,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblClickToSignUpMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblClickToSignupMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
