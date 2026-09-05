@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.com.ifba.usuario.view;
-
+import br.com.ifba.login.view.TelaLogin;
 /**
  *
  * @author henrymf
@@ -35,19 +35,19 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         lblPhoneNumber = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblPassword1 = new javax.swing.JLabel();
+        lblPassword2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        txtCPF = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
         txtBirthday = new javax.swing.JTextField();
-        txtPhoneNumber = new javax.swing.JTextField();
+        txtPhonenumber = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtUser = new javax.swing.JTextField();
         txtPassword1 = new javax.swing.JPasswordField();
         txtPassword2 = new javax.swing.JPasswordField();
         cbGender = new javax.swing.JComboBox<>();
         btnSignUp = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCancelSigup = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 25));
@@ -66,9 +66,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         lblUser.setText("Login:");
 
-        lblPassword.setText("Senha:");
+        lblPassword1.setText("Senha:");
 
-        jLabel9.setText("Confirmar Senha:");
+        lblPassword2.setText("Confirmar Senha:");
 
         txtUser.setToolTipText("");
 
@@ -78,10 +78,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
         btnSignUp.setBackground(new java.awt.Color(204, 0, 204));
         btnSignUp.setText("Cadastrar");
+        btnSignUp.addActionListener(this::btnSignUpActionPerformed);
 
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnCancelSigup.setForeground(new java.awt.Color(0, 0, 0));
+        btnCancelSigup.setText("Cancelar");
+        btnCancelSigup.addActionListener(this::btnCancelSigupActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,8 +99,8 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(lblPassword)
+                            .addComponent(lblPassword2)
+                            .addComponent(lblPassword1)
                             .addComponent(lblUser)
                             .addComponent(lblEmail))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
@@ -107,11 +108,11 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(1, 1, 1)
-                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtPhonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(cbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -128,7 +129,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 .addGap(92, 92, 92)
                 .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelSigup, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -141,7 +142,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCPF)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGender)
@@ -153,7 +154,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPhoneNumber)
-                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPhonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
@@ -164,20 +165,20 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPassword)
+                    .addComponent(lblPassword1)
                     .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(lblPassword2)
                     .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelSigup, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel9, lblBirthday, lblCPF, lblEmail, lblGender, lblName, lblPassword, lblPhoneNumber, lblUser, txtBirthday, txtCPF, txtEmail, txtName, txtPhoneNumber, txtUser});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblBirthday, lblCPF, lblEmail, lblGender, lblName, lblPassword1, lblPassword2, lblPhoneNumber, lblUser, txtBirthday, txtCpf, txtEmail, txtName, txtPhonenumber, txtUser});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,9 +187,59 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbGenderActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnCancelSigupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelSigupActionPerformed
+        //
+        TelaLogin telaLogin = new TelaLogin();
+        telaLogin.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnCancelSigupActionPerformed
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        //Capture text inputs into local variables
+        String name = txtName.getText().trim();
+        String cpf = txtCpf.getText().trim();
+        String gender = (String) cbGender.getSelectedItem();
+        String birthDay = txtBirthday.getText().trim();
+        String phoneNumber = txtPhonenumber.getText().trim();
+        String email = txtEmail.getText().trim();
+        String login = txtUser.getText().trim();
+        
+        //Capture password inputs
+        String password = new String(txtPassword1.getPassword());
+        String confirmPassword = new String(txtPassword2.getPassword());
+        
+        if (name.isEmpty() || cpf.isEmpty() || gender == null || gender.isEmpty()
+                || birthDay.isEmpty() || phoneNumber.isEmpty() || email.isEmpty()
+                || login.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Preencha todos os  campos",
+                    "Erro",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        } else if (!password.equals(confirmPassword)){
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "As senhas nao coincidem",
+                    "Erro",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Cadastro realizado com sucesso!",
+                    "Cadastro",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE
+            );
+            return;
+        }
+        
+  
+    }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,25 +267,25 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelSigup;
     private javax.swing.JButton btnSignUp;
     private javax.swing.JComboBox<String> cbGender;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblBirthday;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPassword1;
+    private javax.swing.JLabel lblPassword2;
     private javax.swing.JLabel lblPhoneNumber;
     private javax.swing.JLabel lblUser;
     private javax.swing.JTextField txtBirthday;
-    private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword1;
     private javax.swing.JPasswordField txtPassword2;
-    private javax.swing.JTextField txtPhoneNumber;
+    private javax.swing.JTextField txtPhonenumber;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

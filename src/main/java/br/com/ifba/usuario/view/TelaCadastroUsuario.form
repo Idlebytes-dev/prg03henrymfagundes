@@ -37,8 +37,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPassword" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPassword2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPassword1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblUser" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -49,12 +49,12 @@
                   <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                          <Component id="txtCPF" min="-2" pref="220" max="-2" attributes="0"/>
+                          <Component id="txtCpf" min="-2" pref="220" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                              <Component id="txtPhoneNumber" min="-2" pref="220" max="-2" attributes="0"/>
+                              <Component id="txtPhonenumber" min="-2" pref="220" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="cbGender" alignment="1" min="-2" pref="220" max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
               <Component id="btnSignUp" min="-2" pref="120" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="120" max="-2" attributes="0"/>
+              <Component id="btnCancelSigup" min="-2" pref="120" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -95,7 +95,7 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCPF" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCPF" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCpf" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -110,7 +110,7 @@
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPhoneNumber" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPhoneNumber" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPhonenumber" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -124,18 +124,18 @@
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPassword" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPassword1" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPassword1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel9" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPassword2" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPassword2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSignUp" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="btnCancelSigup" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
@@ -178,23 +178,23 @@
         <Property name="text" type="java.lang.String" value="Login:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblPassword">
+    <Component class="javax.swing.JLabel" name="lblPassword1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel9">
+    <Component class="javax.swing.JLabel" name="lblPassword2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Confirmar Senha:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtName">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCPF">
+    <Component class="javax.swing.JTextField" name="txtCpf">
     </Component>
     <Component class="javax.swing.JTextField" name="txtBirthday">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPhoneNumber">
+    <Component class="javax.swing.JTextField" name="txtPhonenumber">
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
     </Component>
@@ -235,8 +235,11 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSignUpActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnCancelSigup">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -244,7 +247,7 @@
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelSigupActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
