@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.com.ifba.login.view;
-
+import br.com.ifba.usuario.view.TelaCadastroUsuario;
 /**
  *
  * @author henrymf
@@ -36,12 +36,15 @@ public class TelaLogin extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         lblResult = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lblHaveAccount = new javax.swing.JLabel();
+        lblClickToSignup = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblLogo.setIcon(new javax.swing.ImageIcon("/home/henrymf/Workspace/College/pgr03henrymfagundes/src/main/java/br/com/ifba/login/imagens/logo.png")); // NOI18N
         lblLogo.setToolTipText("");
+        lblLogo.setMaximumSize(new java.awt.Dimension(150, 150));
 
         lblLogin.setText("Login:");
         lblLogin.setToolTipText("");
@@ -59,6 +62,16 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setText("ApexOptima");
 
+        lblHaveAccount.setText("Nao tenho conta?");
+
+        lblClickToSignup.setText("<html><u><font color=\"#0066CC\">Cadastre-se</font></u></html>");
+        lblClickToSignup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblClickToSignup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblClickToSignupMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,13 +83,15 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(lblSenha, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblLogo)
+                    .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(btnSignin)
                     .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblHaveAccount)
+                    .addComponent(lblClickToSignup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
@@ -87,9 +102,9 @@ public class TelaLogin extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(lblLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -99,9 +114,13 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSenha))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSignin)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblHaveAccount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblClickToSignup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addComponent(lblResult, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -122,6 +141,15 @@ public class TelaLogin extends javax.swing.JFrame {
         //Sets the captured auth inputs in the footer label
         lblResult.setText("<html>Login digitado: " + loginInput + "<br>Senha digitada: " + passwordInput + "</html>");
     }//GEN-LAST:event_btnSigninActionPerformed
+
+    private void lblClickToSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClickToSignupMouseClicked
+       //Creates and displays the registration frame
+       TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario();
+       telaCadastro.setVisible(true);
+       
+       //Closes/Hides the current login frame
+       this.dispose();
+    }//GEN-LAST:event_lblClickToSignupMouseClicked
 
     /**
      * @param args the command line arguments
@@ -151,6 +179,8 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSignin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblClickToSignup;
+    private javax.swing.JLabel lblHaveAccount;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblResult;
