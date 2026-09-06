@@ -4,6 +4,7 @@
  */
 package br.com.ifba.usuario.view;
 import br.com.ifba.login.view.TelaLogin;
+import br.com.ifba.usuario.validar.ValidadorUsuario;
 /**
  *
  * @author henrymf
@@ -228,6 +229,14 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
             return;
+        } else if (ValidadorUsuario.contemPalavraProibida(login)){
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Login contem palavra nao permitida",
+                    "Erro",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            return;
         } else {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
@@ -237,8 +246,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             );
             return;
         }
-        
-  
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**
