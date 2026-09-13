@@ -5,6 +5,7 @@
 package br.com.ifba.usuario.view;
 import br.com.ifba.login.view.TelaLogin;
 import br.com.ifba.usuario.validar.ValidadorUsuario;
+import br.com.ifba.usuario.entity.Usuario;
 /**
  *
  * @author henrymf
@@ -238,6 +239,20 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             );
             return;
         } else {
+            
+            
+            //Creates new User object and passes it the registration input
+            Usuario usuario = new Usuario();
+            
+            usuario.name = name;
+            usuario.cpf = cpf;
+            usuario.gender = gender;
+            usuario.birthDay = birthDay;
+            usuario.phoneNumber = phoneNumber;
+            usuario.email = email;
+            usuario.login = login;
+            usuario.password = password;
+            
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Cadastro realizado com sucesso!",

@@ -4,6 +4,7 @@
  */
 package br.com.ifba.login.view;
 import br.com.ifba.usuario.view.TelaCadastroUsuario;
+import br.com.ifba.usuario.entity.Usuario;
 /**
  *
  * @author henrymf
@@ -137,9 +138,15 @@ public class TelaLogin extends javax.swing.JFrame {
         String loginInput = txtLogin.getText();
         String passwordInput = new String(txtPassword.getPassword());
         
+        //Creates new user object and passes in the login input
+        Usuario usuario = new Usuario();
+        
+        usuario.login = loginInput;
+        usuario.password = passwordInput;
+        
         //setText doesn't support "\n" so I used a html structure with <br>
         //Sets the captured auth inputs in the footer label
-        lblResult.setText("<html>Login digitado: " + loginInput + "<br>Senha digitada: " + passwordInput + "</html>");
+        lblResult.setText("<html>Login digitado: " + usuario.login + "<br>Senha digitada: " + usuario.password + "</html>");
     }//GEN-LAST:event_btnSigninActionPerformed
 
     private void lblClickToSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClickToSignupMouseClicked
