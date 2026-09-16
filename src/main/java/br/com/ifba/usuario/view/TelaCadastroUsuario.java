@@ -244,18 +244,18 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             //Creates new User object and passes it the registration input
             Usuario usuario = new Usuario();
             
-            usuario.name = name;
-            usuario.cpf = cpf;
-            usuario.gender = gender;
-            usuario.birthDay = birthDay;
-            usuario.phoneNumber = phoneNumber;
-            usuario.email = email;
-            usuario.login = login;
-            usuario.password = password;
+            usuario.setName(name);
+            usuario.setCpf(cpf);
+            usuario.setGender(gender);
+            usuario.setBirthDay(birthDay);
+            usuario.setPhoneNumber(phoneNumber);
+            usuario.setEmail(email);
+            usuario.setLogin(login);
+            usuario.setPassword(password);
             
             javax.swing.JOptionPane.showMessageDialog(
                     this,
-                    "Cadastro realizado com sucesso!",
+                    "Usuário " + usuario.getName() + " cadastrado com sucesso!",
                     "Cadastro",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE
             );

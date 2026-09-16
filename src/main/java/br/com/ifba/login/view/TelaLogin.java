@@ -141,12 +141,12 @@ public class TelaLogin extends javax.swing.JFrame {
         //Creates new user object and passes in the login input
         Usuario usuario = new Usuario();
         
-        usuario.login = loginInput;
-        usuario.password = passwordInput;
+        usuario.setLogin(loginInput);
+        usuario.setPassword(passwordInput);
         
         //setText doesn't support "\n" so I used a html structure with <br>
         //Sets the captured auth inputs in the footer label
-        lblResult.setText("<html>Login digitado: " + usuario.login + "<br>Senha digitada: " + usuario.password + "</html>");
+        lblResult.setText("<html>Login digitado: " + usuario.getLogin() + "<br>Senha digitada: " + usuario.getPassword() + "</html>");
     }//GEN-LAST:event_btnSigninActionPerformed
 
     private void lblClickToSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClickToSignupMouseClicked
