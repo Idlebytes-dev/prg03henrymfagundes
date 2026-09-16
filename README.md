@@ -10,6 +10,7 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 05: Tela de Cadastro](ATIVIDADES/ATIVIDADE%2005%20-%20TELA%20CADASTRO)
 - [Atividade 06: Validação de Cadastro](ATIVIDADES/ATIVIDADE%2006%20-%20VALIDA%C3%87%C3%83O%20CADASTRO)
 - [Atividade 07: Classe Usuário](ATIVIDADES/ATIVIDADE%2007%20-%20CLASSE%20USUARIO)
+- [Atividade 08: Diagrama de Usuário](ATIVIDADES/ATIVIDADE%2008%20-%20DIAGRAMA%20DE%20USUARIO)
 
 
 ## Stack Tecnológica
