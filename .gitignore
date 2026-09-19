@@ -7,3 +7,5 @@ nbproject/private/
 .vscode/
 *.log
 .DS_Store
+.codex/
+.agents/
