@@ -12,6 +12,34 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 07: Classe Usuário](ATIVIDADES/ATIVIDADE%2007%20-%20CLASSE%20USUARIO)
 - [Atividade 08: Diagrama de Usuário](ATIVIDADES/ATIVIDADE%2008%20-%20DIAGRAMA%20DE%20USUARIO)
 - [Atividade 09: Interface](ATIVIDADES/ATIVIDADE%2009%20-%20INTERFACE)
+- [Atividade 10: Testes](ATIVIDADES/ATIVIDADE%2010%20-%20TESTES)
+
+## Como executar
+
+Requisito: **JDK 25**.
+
+### Executar os testes
+
+Linux/macOS:
+
+```bash
+./mvnw clean test
+```
+
+Windows:
+
+```bat
+mvnw.cmd clean test
+```
+
+### Compilar o projeto
+
+```bash
+./mvnw package
+```
+
+A aplicação gráfica pode ser iniciada pela classe
+`br.com.ifba.login.view.TelaLogin` na IDE.
 
 
 ## Stack Tecnológica

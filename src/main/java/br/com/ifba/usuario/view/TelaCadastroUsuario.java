@@ -211,9 +211,9 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         String password = new String(txtPassword1.getPassword());
         String confirmPassword = new String(txtPassword2.getPassword());
         
-        if (name.isEmpty() || cpf.isEmpty() || gender == null || gender.isEmpty()
-                || birthDay.isEmpty() || phoneNumber.isEmpty() || email.isEmpty()
-                || login.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (!ValidadorUsuario.camposPreenchidos(
+                name, cpf, gender, birthDay, phoneNumber, email, login,
+                password, confirmPassword)) {
             
             javax.swing.JOptionPane.showMessageDialog(
                     this,
@@ -221,23 +221,27 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     "Erro",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-            return;
-        } else if (!password.equals(confirmPassword)){
+        } else if (!ValidadorUsuario.cpfValido(cpf)) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "CPF invalido",
+                    "Erro",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        } else if (!ValidadorUsuario.senhasConferem(password, confirmPassword)) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "As senhas nao coincidem",
                     "Erro",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-            return;
-        } else if (ValidadorUsuario.contemPalavraProibida(login)){
+        } else if (ValidadorUsuario.contemPalavraProibida(login)) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Login contem palavra nao permitida",
                     "Erro",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-            return;
         } else {
             
             
