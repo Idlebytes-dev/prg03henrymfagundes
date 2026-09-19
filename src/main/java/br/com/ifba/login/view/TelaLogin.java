@@ -143,7 +143,6 @@ public class TelaLogin extends javax.swing.JFrame {
                     "Sucesso",
                     JOptionPane.INFORMATION_MESSAGE
             );
-            return;
         } else {
             JOptionPane.showMessageDialog(
                     this,

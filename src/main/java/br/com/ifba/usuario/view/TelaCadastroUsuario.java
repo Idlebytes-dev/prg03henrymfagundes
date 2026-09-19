@@ -221,7 +221,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     "Erro",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-            return;
         } else if (!ValidadorUsuario.cpfValido(cpf)) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
@@ -229,7 +228,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     "Erro",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-            return;
         } else if (!ValidadorUsuario.senhasConferem(password, confirmPassword)) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
@@ -237,7 +235,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     "Erro",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-            return;
         } else if (ValidadorUsuario.contemPalavraProibida(login)) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
@@ -245,7 +242,6 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
                     "Erro",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-            return;
         } else {
             
             
