@@ -13,6 +13,7 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 08: Diagrama de Usuário](ATIVIDADES/ATIVIDADE%2008%20-%20DIAGRAMA%20DE%20USUARIO)
 - [Atividade 09: Interface](ATIVIDADES/ATIVIDADE%2009%20-%20INTERFACE)
 - [Atividade 10: Testes](ATIVIDADES/ATIVIDADE%2010%20-%20TESTES)
+- [Atividade 11: Relacionamento](ATIVIDADES/ATIVIDADE%2011%20-%20RELACIONAMENTO)
 
 ## Como executar
 
