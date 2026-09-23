@@ -5,6 +5,8 @@
 package br.com.ifba.usuario.entity;
 
 import br.com.ifba.usuario.interfaces.Autenticavel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,6 +23,9 @@ public class Usuario implements Autenticavel {
     private String email;
     private String login;
     private String password;
+    private Status status = Status.INATIVO;
+    private Perfil perfilAtivo;
+    private List<Perfil> perfis = new ArrayList<>();
 
     public Usuario() {
     }
@@ -99,6 +104,32 @@ public class Usuario implements Autenticavel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Perfil getPerfilAtivo() {
+        return perfilAtivo;
+    }
+
+    public void setPerfilAtivo(Perfil perfilAtivo) {
+        this.perfilAtivo = perfilAtivo;
+    }
+
+    public List<Perfil> getPerfis() {
+        return perfis;
+    }
+
+    public void adicionarPerfil(Perfil perfil) {
+        if (perfil != null) {
+            this.perfis.add(perfil);
+        }
     }
 
     @Override
