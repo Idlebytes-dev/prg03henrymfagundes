@@ -14,6 +14,7 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 09: Interface](ATIVIDADES/ATIVIDADE%2009%20-%20INTERFACE)
 - [Atividade 10: Testes](ATIVIDADES/ATIVIDADE%2010%20-%20TESTES)
 - [Atividade 11: Relacionamento](ATIVIDADES/ATIVIDADE%2011%20-%20RELACIONAMENTO)
+- [Atividade 12: Herança](ATIVIDADES/ATIVIDADE%2012%20-%20HERANCA)
 
 ## Como executar
 
