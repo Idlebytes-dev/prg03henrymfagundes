@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,6 +17,45 @@ import org.junit.jupiter.api.Test;
  * @author henrymf
  */
 public class UsuarioTest {
+
+    @Test
+    void deveReconhecerNaListaOutroUsuarioComMesmoLogin() {
+        Usuario primeiro = new Usuario();
+        primeiro.setLogin("henry");
+        primeiro.setName("Henry");
+        Usuario segundo = new Usuario();
+        segundo.setLogin("henry");
+        segundo.setName("Outro nome");
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(primeiro);
+
+        assertTrue(primeiro != segundo);
+        assertTrue(usuarios.contains(segundo));
+        assertEquals(primeiro, segundo);
+        assertEquals(segundo, primeiro);
+        assertEquals(primeiro.hashCode(), segundo.hashCode());
+    }
+
+    @Test
+    void deveDistinguirUsuariosComLoginsDiferentes() {
+        Usuario primeiro = new Usuario();
+        primeiro.setLogin("henry");
+        Usuario segundo = new Usuario();
+        segundo.setLogin("ana");
+
+        assertFalse(primeiro.equals(segundo));
+        assertFalse(primeiro.equals(null));
+        assertFalse(primeiro.equals("henry"));
+    }
+
+    @Test
+    void usuariosSemLoginSoDevemSerIguaisAPropriaInstancia() {
+        Usuario primeiro = new Usuario();
+        Usuario segundo = new Usuario();
+
+        assertEquals(primeiro, primeiro);
+        assertFalse(primeiro.equals(segundo));
+    }
 
     @Test
     void deveCriarUsuarioComTodosOsDadosNoConstrutor() {
