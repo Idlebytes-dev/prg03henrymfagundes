@@ -16,6 +16,22 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 11: Relacionamento](ATIVIDADES/ATIVIDADE%2011%20-%20RELACIONAMENTO)
 - [Atividade 12: Herança](ATIVIDADES/ATIVIDADE%2012%20-%20HERAN%C3%87A)
 - [Atividade 13: Polimorfismo](ATIVIDADES/ATIVIDADE%2013%20-%20POLIMORFISMO)
+- [Atividade 15: Collections](ATIVIDADES/ATIVIDADE%2015%20-%20COLLECTIONS)
+
+## Atividade 15: Collections, Generics e Map
+
+`RepositorioUsuarioEmMemoria` mantém os usuários em uma `List<Usuario>` e um índice `Map<String, Usuario>` por login. O generics limita os elementos aos tipos declarados. Cada cadastro válido alimenta as duas coleções; um login duplicado lança `IllegalArgumentException` antes de alterar qualquer uma delas. Usuários nulos e logins nulos ou em branco também são rejeitados. `buscarPorLogin` usa o login exato, diferencia maiúsculas de minúsculas e devolve `null` quando não há cadastro. `listarTodos` devolve uma cópia não modificável da lista para proteger a consistência do índice.
+
+`Usuario.equals` e `hashCode` usam o login, pois ele identifica cada cadastro. Dois objetos distintos com o mesmo login são reconhecidos por `List.contains`, mesmo que tenham outros dados diferentes. Antes da implementação de `equals`, o experimento retornou `false`; depois, retornou `true`, comportamento também coberto por `UsuarioTest`. Usuários sem login só são iguais à própria instância. Defina o login antes de cadastrar e mantenha-o estável depois do cadastro, pois ele é a identidade do usuário e a chave do índice.
+
+A busca foi implementada primeiro com um `for` na lista e depois substituída por `Map.get`; as duas versões estão nos commits desta atividade. Comparação:
+
+Com 10 usuários, o `for` pode fazer até 10 comparações (O(n)); o `HashMap` faz a consulta em tempo médio O(1).<br>
+Com 10.000 usuários, o `for` pode fazer até 10.000 comparações; o tempo médio da consulta no `HashMap` continua O(1), usando memória adicional para o índice.
+
+A tela de cadastro chama `cadastrar` após validar e preencher o usuário, e só mostra sucesso quando o repositório aceita o cadastro. O login duplicado mostra uma mensagem de erro. A mesma instância do repositório é passada entre as telas de login e cadastro, preservando os registros ao voltar e reabrir o formulário durante a execução. Os dados são mantidos apenas em memória e são perdidos ao encerrar a aplicação.
+
+`RepositorioUsuarioEmMemoriaTest` cobre cadastro, busca entre dois usuários, login inexistente, duplicidade sem alteração dos registros, repositório vazio, proteção da lista e entradas inválidas. `UsuarioTest` cobre igualdade pela lista e consistência do hash. A evidência da suíte completa, incluindo os testes das atividades anteriores, fica em `ATIVIDADES/ATIVIDADE 15 - COLLECTIONS`.
 
 ## Atividade 13: Polimorfismo
 

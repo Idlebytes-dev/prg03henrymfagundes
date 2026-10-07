@@ -6,6 +6,8 @@ package br.com.ifba.login.view;
 
 import br.com.ifba.usuario.view.TelaCadastroUsuario;
 import br.com.ifba.usuario.entity.Usuario;
+import br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoria;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 /**
  *
@@ -14,11 +16,17 @@ import javax.swing.JOptionPane;
 public class TelaLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
+    private final RepositorioUsuarioEmMemoria repositorio;
 
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
+        this(new RepositorioUsuarioEmMemoria());
+    }
+
+    public TelaLogin(RepositorioUsuarioEmMemoria repositorio) {
+        this.repositorio = Objects.requireNonNull(repositorio);
         initComponents();
     }
 
@@ -154,7 +162,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void lblClickToSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClickToSignupMouseClicked
        //Creates and displays the registration frame
-       TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario();
+       TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario(repositorio);
        telaCadastro.setVisible(true);
        
        //Closes/Hides the current login frame

@@ -7,6 +7,7 @@ package br.com.ifba.usuario.entity;
 import br.com.ifba.usuario.interfaces.Autenticavel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -130,6 +131,23 @@ public class Usuario implements Autenticavel {
         if (perfil != null) {
             this.perfis.add(perfil);
         }
+    }
+
+    // O login identifica o usuário porque é único no cadastro do sistema.
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Usuario outro)) {
+            return false;
+        }
+        return login != null && login.equals(outro.login);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(login);
     }
 
     @Override
