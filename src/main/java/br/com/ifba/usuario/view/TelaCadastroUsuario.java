@@ -6,6 +6,8 @@ package br.com.ifba.usuario.view;
 import br.com.ifba.login.view.TelaLogin;
 import br.com.ifba.usuario.validar.ValidadorUsuario;
 import br.com.ifba.usuario.entity.Usuario;
+import br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoria;
+import java.util.Objects;
 /**
  *
  * @author henrymf
@@ -13,11 +15,17 @@ import br.com.ifba.usuario.entity.Usuario;
 public class TelaCadastroUsuario extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastroUsuario.class.getName());
+    private final RepositorioUsuarioEmMemoria repositorio;
 
     /**
      * Creates new form TelaCadastroUsuario
      */
     public TelaCadastroUsuario() {
+        this(new RepositorioUsuarioEmMemoria());
+    }
+
+    public TelaCadastroUsuario(RepositorioUsuarioEmMemoria repositorio) {
+        this.repositorio = Objects.requireNonNull(repositorio);
         initComponents();
     }
 
@@ -191,7 +199,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
     private void btnCancelSigupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelSigupActionPerformed
         //
-        TelaLogin telaLogin = new TelaLogin();
+        TelaLogin telaLogin = new TelaLogin(repositorio);
         telaLogin.setVisible(true);
         
         this.dispose();
@@ -256,6 +264,19 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             usuario.setEmail(email);
             usuario.setLogin(login);
             usuario.setPassword(password);
+
+            try {
+                repositorio.cadastrar(usuario);
+            } catch (IllegalArgumentException ex) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        ex.getMessage(),
+                        "Erro no cadastro",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                txtUser.requestFocusInWindow();
+                return;
+            }
             
             javax.swing.JOptionPane.showMessageDialog(
                     this,
