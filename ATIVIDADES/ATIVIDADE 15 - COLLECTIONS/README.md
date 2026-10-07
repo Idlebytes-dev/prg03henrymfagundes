@@ -2,7 +2,7 @@
 
 ![Suíte completa: 35 testes passaram, sem falhas, erros ou testes ignorados](greentests15.png)
 
-O print mostra a barra verde e todos os 35 testes, incluindo os das atividades anteriores. É uma captura no navegador do [relatório da suíte](testsuite.html), gerado a partir dos resultados reais do Maven Surefire em `target/surefire-reports/TEST-*.xml`. Os [relatórios textuais originais](test-results.txt) também estão disponíveis.
+O print do terminal mostra os resultados da suíte completa: 35 testes passaram, incluindo os das atividades anteriores, sem falhas, erros ou testes ignorados, com `BUILD SUCCESS`.
 
 Verificação: `./mvnw -B package` compilou o projeto, executou a suíte completa e gerou o JAR com sucesso usando Java 25. Para repetir localmente, execute `./mvnw clean test`.
 
