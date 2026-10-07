@@ -15,10 +15,10 @@ import java.util.Map;
  * @author henrymf
  */
 public class RepositorioUsuarioEmMemoria {
-    
+
     private final List<Usuario> usuarios = new ArrayList<>();
     private final Map<String, Usuario> porLogin = new HashMap<>();
-    
+
     public void cadastrar(Usuario usuario) {
         if (usuario == null || usuario.getLogin() == null || usuario.getLogin().isBlank()) {
             throw new IllegalArgumentException("Informe um usuário com login preenchido.");
@@ -30,7 +30,7 @@ public class RepositorioUsuarioEmMemoria {
         usuarios.add(usuario);
         porLogin.put(login, usuario);
     }
-    
+
     /** Retorna uma cópia não modificável, preservando a lista e o índice internos. */
     public List<Usuario> listarTodos() {
         return List.copyOf(usuarios);

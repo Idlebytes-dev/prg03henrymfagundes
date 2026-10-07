@@ -1,0 +1,38 @@
+Relatórios originais do Maven Surefire
+Comando: ./mvnw -B package
+Revisão: 4a5395a
+
+-------------------------------------------------------------------------------
+Test set: br.com.ifba.sessao.demo.SessionStateDemoTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in br.com.ifba.sessao.demo.SessionStateDemoTest
+
+-------------------------------------------------------------------------------
+Test set: br.com.ifba.sessao.entity.SessionTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in br.com.ifba.sessao.entity.SessionTest
+
+-------------------------------------------------------------------------------
+Test set: br.com.ifba.sessao.estado.SessionStateTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in br.com.ifba.sessao.estado.SessionStateTest
+
+-------------------------------------------------------------------------------
+Test set: br.com.ifba.usuario.entity.UsuarioRelacionamentoTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 s -- in br.com.ifba.usuario.entity.UsuarioRelacionamentoTest
+
+-------------------------------------------------------------------------------
+Test set: br.com.ifba.usuario.entity.UsuarioTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in br.com.ifba.usuario.entity.UsuarioTest
+
+-------------------------------------------------------------------------------
+Test set: br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoriaTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoriaTest
+
+-------------------------------------------------------------------------------
+Test set: br.com.ifba.usuario.validar.ValidadorUsuarioTest
+-------------------------------------------------------------------------------
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.017 s -- in br.com.ifba.usuario.validar.ValidadorUsuarioTest
