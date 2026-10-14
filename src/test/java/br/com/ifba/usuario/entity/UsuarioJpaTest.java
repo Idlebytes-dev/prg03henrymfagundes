@@ -1,35 +1,40 @@
 package br.com.ifba.usuario.entity;
 
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Map;
+import org.hibernate.jpa.boot.spi.Bootstrap;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class UsuarioJpaTest {
 
     @Test
-    void deveInicializarHibernateEPrepararConsultaSemBancoLocal() {
-        var registry = new StandardServiceRegistryBuilder()
-                .applySetting("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
-                .applySetting("hibernate.boot.allow_jdbc_metadata_access", false)
-                .applySetting("hibernate.connection.provider_class",
-                        "org.hibernate.engine.jdbc.connections.internal.UserSuppliedConnectionProviderImpl")
-                .build();
+    void deveInicializarHibernateEPrepararConsultaSemBancoLocal(@TempDir Path pasta) throws IOException {
+        Path configuracao = Files.createDirectories(pasta.resolve("META-INF")).resolve("persistence.xml");
+        try (var exemplo = getClass().getResourceAsStream("/META-INF/persistence.xml.exemplo")) {
+            assertNotNull(exemplo);
+            Files.copy(exemplo, configuracao);
+        }
+        Map<String, Object> propriedades = Map.of(
+                "hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect",
+                "hibernate.boot.allow_jdbc_metadata_access", false,
+                "hibernate.connection.provider_class",
+                "org.hibernate.engine.jdbc.connections.internal.UserSuppliedConnectionProviderImpl");
 
-        try (var factory = new MetadataSources(registry)
-                .addAnnotatedClass(Usuario.class)
-                .buildMetadata()
-                .buildSessionFactory();
-             var session = factory.openSession()) {
+        try (var factory = Bootstrap.getEntityManagerFactoryBuilder(
+                configuracao.toUri().toURL(), "apexoptimaPU", propriedades).build();
+             var manager = factory.createEntityManager()) {
             // Compila a consulta sem executá-la nem depender de credenciais locais.
-            assertDoesNotThrow(() -> session.createSelectionQuery(
+            assertDoesNotThrow(() -> manager.createQuery(
                     "select u from Usuario u where u.login = :login and u.status = :status",
                     Usuario.class)
                     .setParameter("login", "engenheiro")
                     .setParameter("status", Status.ATIVO));
-        } finally {
-            StandardServiceRegistryBuilder.destroy(registry);
         }
     }
 }
