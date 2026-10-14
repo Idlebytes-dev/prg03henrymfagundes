@@ -16,7 +16,14 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 11: Relacionamento](ATIVIDADES/ATIVIDADE%2011%20-%20RELACIONAMENTO)
 - [Atividade 12: Herança](ATIVIDADES/ATIVIDADE%2012%20-%20HERAN%C3%87A)
 - [Atividade 13: Polimorfismo](ATIVIDADES/ATIVIDADE%2013%20-%20POLIMORFISMO)
+- [Atividade 14: JPA e Hibernate](ATIVIDADES/ATIVIDADE%2014%20-%20JPA%20E%20HIBERNATE)
 - [Atividade 15: Collections](ATIVIDADES/ATIVIDADE%2015%20-%20COLLECTIONS)
+
+## Atividade 14: JPA e Hibernate
+
+`Usuario` foi mapeado com Jakarta Persistence para a tabela `usuarios`, com ID gerado pelo banco, colunas nomeadas, login único e status como texto. O projeto usa Hibernate e o driver PostgreSQL. A configuração local fica em `src/main/resources/META-INF/persistence.xml`, ignorada pelo Git; o modelo sem credenciais está em `persistence.xml.exemplo` na mesma pasta.
+
+As telas Swing de listagem e edição foram adicionadas à tela de cadastro existente, sem operações JPA. A documentação, as prévias das telas e as instruções de execução estão na [pasta da atividade](ATIVIDADES/ATIVIDADE%2014%20-%20JPA%20E%20HIBERNATE). A resposta sobre os campos que devem ficar fora da listagem está em [RETROSPECTIVA.md](RETROSPECTIVA.md). Os 35 testes anteriores seguem passando e um teste de inicialização do Hibernate foi acrescentado.
 
 ## Atividade 15: Collections, Generics e Map
 

@@ -1,0 +1,89 @@
+Comando: ./mvnw -B -ntp clean package
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/henrymf/.m2/wrapper/dists/apache-maven-3.9.11/a2d47e15/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------------< com.apexoptima:apexoptima >----------------------
+[INFO] Building ApexOptima 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ apexoptima ---
+[INFO] Deleting /home/henrymf/Workspace/College/pgr03henrymfagundes/target
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ apexoptima ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.13.0:compile (default-compile) @ apexoptima ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 17 source files with javac [debug release 25] to target/classes
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ apexoptima ---
+[INFO] skip non existing resourceDirectory /home/henrymf/Workspace/College/pgr03henrymfagundes/src/test/resources
+[INFO]
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ apexoptima ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 8 source files with javac [debug release 25] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.2.5:test (default-test) @ apexoptima ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running br.com.ifba.sessao.demo.SessionStateDemoTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 s -- in br.com.ifba.sessao.demo.SessionStateDemoTest
+[INFO] Running br.com.ifba.sessao.entity.SessionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in br.com.ifba.sessao.entity.SessionTest
+[INFO] Running br.com.ifba.sessao.estado.SessionStateTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 s -- in br.com.ifba.sessao.estado.SessionStateTest
+[INFO] Running br.com.ifba.usuario.entity.UsuarioJpaTest
+Oct 13, 2026 10:30:47 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Oct 13, 2026 10:30:47 PM org.hibernate.Version logVersion
+INFO: HHH000001: Hibernate ORM core version 7.4.13.Final
+Oct 13, 2026 10:30:48 PM org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl constructDialect
+WARN: HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+Oct 13, 2026 10:30:48 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: org.postgresql.Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 14.0
+	Default catalog/schema: unknown/unknown
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	JDBC fetch size: undefined/unknown
+	Pool: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+Oct 13, 2026 10:30:49 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Oct 13, 2026 10:30:49 PM org.hibernate.engine.jdbc.connections.internal.ConnectionProviderInitiator instantiateNamedConnectionProvider
+INFO: HHH102002: Instantiating explicit connection provider: org.hibernate.engine.jdbc.connections.internal.UserSuppliedConnectionProviderImpl
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.829 s -- in br.com.ifba.usuario.entity.UsuarioJpaTest
+[INFO] Running br.com.ifba.usuario.entity.UsuarioRelacionamentoTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in br.com.ifba.usuario.entity.UsuarioRelacionamentoTest
+[INFO] Running br.com.ifba.usuario.entity.UsuarioTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in br.com.ifba.usuario.entity.UsuarioTest
+[INFO] Running br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoriaTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoriaTest
+[INFO] Running br.com.ifba.usuario.validar.ValidadorUsuarioTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in br.com.ifba.usuario.validar.ValidadorUsuarioTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 36, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.1:jar (default-jar) @ apexoptima ---
+[INFO] Building jar: /home/henrymf/Workspace/College/pgr03henrymfagundes/target/apexoptima-1.0.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.978 s
+[INFO] Finished at: 2026-10-13T22:30:49-03:00
+[INFO] ------------------------------------------------------------------------

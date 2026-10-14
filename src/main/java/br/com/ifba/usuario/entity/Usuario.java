@@ -5,6 +5,15 @@
 package br.com.ifba.usuario.entity;
 
 import br.com.ifba.usuario.interfaces.Autenticavel;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,18 +23,38 @@ import java.util.Objects;
  * @author henrymf
  */
 //User class
+@Entity
+@Table(name = "usuarios")
 public class Usuario implements Autenticavel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "nome", nullable = false, length = 120)
     private String name;
+    @Column(name = "cpf", nullable = false, length = 14)
     private String cpf;
+    @Column(name = "genero", length = 30)
     private String gender;
+    @Column(name = "data_nascimento", length = 10)
     private String birthDay;
+    @Column(name = "telefone", length = 20)
     private String phoneNumber;
+    @Column(name = "email", nullable = false, length = 160)
     private String email;
+    @Column(name = "login", nullable = false, unique = true, length = 50)
     private String login;
+    @Column(name = "senha", nullable = false, length = 255)
     private String password;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 10)
     private Status status = Status.INATIVO;
+
+    // O mapeamento dos relacionamentos com Perfil fica para uma próxima etapa.
+    @Transient
     private Perfil perfilAtivo;
+    @Transient
     private List<Perfil> perfis = new ArrayList<>();
 
     public Usuario() {
@@ -41,6 +70,10 @@ public class Usuario implements Autenticavel {
         this.email = email;
         this.login = login;
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
