@@ -9,3 +9,4 @@ nbproject/private/
 .DS_Store
 .codex/
 .agents/
+persistence.xml
