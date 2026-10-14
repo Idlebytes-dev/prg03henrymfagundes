@@ -52,7 +52,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogo.setIcon(new javax.swing.ImageIcon("/home/henrymf/Workspace/College/pgr03henrymfagundes/src/main/java/br/com/ifba/login/imagens/logo.png")); // NOI18N
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/login/imagens/logo.png"))); // NOI18N
         lblLogo.setToolTipText("");
         lblLogo.setMaximumSize(new java.awt.Dimension(150, 150));
 
