@@ -1,0 +1,4 @@
+DROP DATABASE atividade18_migrations;
+DROP DATABASE
+CREATE DATABASE atividade18_migrations;
+CREATE DATABASE

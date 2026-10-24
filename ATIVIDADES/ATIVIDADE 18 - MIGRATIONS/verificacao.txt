@@ -1,0 +1,361 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/henrymf/.m2/wrapper/dists/apache-maven-3.9.11/a2d47e15/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------------< com.apexoptima:apexoptima >----------------------
+[INFO] Building ApexOptima 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ apexoptima ---
+[INFO] Deleting /home/henrymf/Workspace/College/pgr03henrymfagundes/target
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ apexoptima ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.13.0:compile (default-compile) @ apexoptima ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 18 source files with javac [debug release 25] to target/classes
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ apexoptima ---
+[INFO] skip non existing resourceDirectory /home/henrymf/Workspace/College/pgr03henrymfagundes/src/test/resources
+[INFO]
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ apexoptima ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 9 source files with javac [debug release 25] to target/test-classes
+[INFO]
+[INFO] --- surefire:3.5.4:test (default-test) @ apexoptima ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running br.com.ifba.infra.BancoDadosIT
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "atividade18_11e7ed32a6a045fa9923b280fe1d5cd0"."flyway_schema_history" does not exist yet
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 3 migrations (execution time 00:00.020s)
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "atividade18_11e7ed32a6a045fa9923b280fe1d5cd0"."flyway_schema_history" ...
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "atividade18_11e7ed32a6a045fa9923b280fe1d5cd0": << Empty Schema >>
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_11e7ed32a6a045fa9923b280fe1d5cd0" to version "1 - criar usuarios"
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_11e7ed32a6a045fa9923b280fe1d5cd0" to version "2 - adicionar criado em"
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_11e7ed32a6a045fa9923b280fe1d5cd0" to version "3 - exigir criado em"
+Oct 23, 2026 11:04:19 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 3 migrations to schema "atividade18_11e7ed32a6a045fa9923b280fe1d5cd0", now at version v3 (execution time 00:00.013s)
+Oct 23, 2026 11:04:19 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Oct 23, 2026 11:04:19 PM org.hibernate.Version logVersion
+INFO: HHH000001: Hibernate ORM core version 7.4.13.Final
+Oct 23, 2026 11:04:19 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProvider configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Oct 23, 2026 11:04:19 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://127.0.0.1:55418/atividade18_migrations?currentSchema=atividade18_11e7ed32a6a045fa9923b280fe1d5cd0]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: atividade18_migrations/atividade18_11e7ed32a6a045fa9923b280fe1d5cd0
+	Autocommit mode: false
+	Isolation level: READ_COMMITTED
+	JDBC fetch size: none
+	Pool: DriverManagerConnectionProvider
+	Minimum pool size: 1
+	Maximum pool size: 20
+Oct 23, 2026 11:04:20 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "atividade18_5b5c87a21adc4f859b4976e15c9b1f39"."flyway_schema_history" does not exist yet
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 3 migrations (execution time 00:00.003s)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "atividade18_5b5c87a21adc4f859b4976e15c9b1f39"."flyway_schema_history" ...
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "atividade18_5b5c87a21adc4f859b4976e15c9b1f39": << Empty Schema >>
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_5b5c87a21adc4f859b4976e15c9b1f39" to version "1 - criar usuarios"
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_5b5c87a21adc4f859b4976e15c9b1f39" to version "2 - adicionar criado em"
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_5b5c87a21adc4f859b4976e15c9b1f39" to version "3 - exigir criado em"
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 3 migrations to schema "atividade18_5b5c87a21adc4f859b4976e15c9b1f39", now at version v3 (execution time 00:00.007s)
+Oct 23, 2026 11:04:21 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProvider configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://127.0.0.1:55418/atividade18_migrations?currentSchema=atividade18_5b5c87a21adc4f859b4976e15c9b1f39]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: atividade18_migrations/atividade18_5b5c87a21adc4f859b4976e15c9b1f39
+	Autocommit mode: false
+	Isolation level: READ_COMMITTED
+	JDBC fetch size: none
+	Pool: DriverManagerConnectionProvider
+	Minimum pool size: 1
+	Maximum pool size: 20
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 3 migrations (execution time 00:00.004s)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "atividade18_5b5c87a21adc4f859b4976e15c9b1f39": 3
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Schema "atividade18_5b5c87a21adc4f859b4976e15c9b1f39" is up to date. No migration necessary.
+Oct 23, 2026 11:04:21 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProvider configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://127.0.0.1:55418/atividade18_migrations?currentSchema=atividade18_5b5c87a21adc4f859b4976e15c9b1f39]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: atividade18_migrations/atividade18_5b5c87a21adc4f859b4976e15c9b1f39
+	Autocommit mode: false
+	Isolation level: READ_COMMITTED
+	JDBC fetch size: none
+	Pool: DriverManagerConnectionProvider
+	Minimum pool size: 1
+	Maximum pool size: 20
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "atividade18_dc973f776c2444bbbb687953123c5ee7"."flyway_schema_history" does not exist yet
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 3 migrations (execution time 00:00.003s)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "atividade18_dc973f776c2444bbbb687953123c5ee7"."flyway_schema_history" ...
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "atividade18_dc973f776c2444bbbb687953123c5ee7": << Empty Schema >>
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_dc973f776c2444bbbb687953123c5ee7" to version "1 - criar usuarios"
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_dc973f776c2444bbbb687953123c5ee7" to version "2 - adicionar criado em"
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_dc973f776c2444bbbb687953123c5ee7" to version "3 - exigir criado em"
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 3 migrations to schema "atividade18_dc973f776c2444bbbb687953123c5ee7", now at version v3 (execution time 00:00.006s)
+Oct 23, 2026 11:04:21 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProvider configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://127.0.0.1:55418/atividade18_migrations?currentSchema=atividade18_dc973f776c2444bbbb687953123c5ee7]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: atividade18_migrations/atividade18_dc973f776c2444bbbb687953123c5ee7
+	Autocommit mode: false
+	Isolation level: READ_COMMITTED
+	JDBC fetch size: none
+	Pool: DriverManagerConnectionProvider
+	Minimum pool size: 1
+	Maximum pool size: 20
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate:
+    insert
+    into
+        usuarios
+        (data_nascimento, cpf, criado_em, email, genero, login, nome, senha, telefone, status)
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate:
+    select
+        u1_0.id,
+        u1_0.data_nascimento,
+        u1_0.cpf,
+        u1_0.criado_em,
+        u1_0.email,
+        u1_0.genero,
+        u1_0.login,
+        u1_0.nome,
+        u1_0.senha,
+        u1_0.telefone,
+        u1_0.status
+    from
+        usuarios u1_0
+    where
+        u1_0.id=?
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 3 migrations (execution time 00:00.003s)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "atividade18_dc973f776c2444bbbb687953123c5ee7": 3
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Schema "atividade18_dc973f776c2444bbbb687953123c5ee7" is up to date. No migration necessary.
+Oct 23, 2026 11:04:21 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProvider configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://127.0.0.1:55418/atividade18_migrations?currentSchema=atividade18_dc973f776c2444bbbb687953123c5ee7]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: atividade18_migrations/atividade18_dc973f776c2444bbbb687953123c5ee7
+	Autocommit mode: false
+	Isolation level: READ_COMMITTED
+	JDBC fetch size: none
+	Pool: DriverManagerConnectionProvider
+	Minimum pool size: 1
+	Maximum pool size: 20
+Oct 23, 2026 11:04:21 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate:
+    select
+        count(u1_0.id)
+    from
+        usuarios u1_0
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "atividade18_8fe77058245f4709af27cc0ae1eba0d4"."flyway_schema_history" does not exist yet
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 3 migrations (execution time 00:00.003s)
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "atividade18_8fe77058245f4709af27cc0ae1eba0d4"."flyway_schema_history" ...
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "atividade18_8fe77058245f4709af27cc0ae1eba0d4": << Empty Schema >>
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_8fe77058245f4709af27cc0ae1eba0d4" to version "1 - criar usuarios"
+Oct 23, 2026 11:04:21 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 1 migration to schema "atividade18_8fe77058245f4709af27cc0ae1eba0d4", now at version v1 (execution time 00:00.004s)
+Oct 23, 2026 11:04:22 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Oct 23, 2026 11:04:22 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Oct 23, 2026 11:04:22 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 3 migrations (execution time 00:00.003s)
+Oct 23, 2026 11:04:22 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "atividade18_8fe77058245f4709af27cc0ae1eba0d4": 1
+Oct 23, 2026 11:04:22 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_8fe77058245f4709af27cc0ae1eba0d4" to version "2 - adicionar criado em"
+Oct 23, 2026 11:04:22 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "atividade18_8fe77058245f4709af27cc0ae1eba0d4" to version "3 - exigir criado em"
+Oct 23, 2026 11:04:22 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 2 migrations to schema "atividade18_8fe77058245f4709af27cc0ae1eba0d4", now at version v3 (execution time 00:00.002s)
+Oct 23, 2026 11:04:22 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Oct 23, 2026 11:04:22 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProvider configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Oct 23, 2026 11:04:22 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://127.0.0.1:55418/atividade18_migrations?currentSchema=atividade18_8fe77058245f4709af27cc0ae1eba0d4]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: atividade18_migrations/atividade18_8fe77058245f4709af27cc0ae1eba0d4
+	Autocommit mode: false
+	Isolation level: READ_COMMITTED
+	JDBC fetch size: none
+	Pool: DriverManagerConnectionProvider
+	Minimum pool size: 1
+	Maximum pool size: 20
+Oct 23, 2026 11:04:22 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate:
+    select
+        u1_0.id,
+        u1_0.data_nascimento,
+        u1_0.cpf,
+        u1_0.criado_em,
+        u1_0.email,
+        u1_0.genero,
+        u1_0.login,
+        u1_0.nome,
+        u1_0.senha,
+        u1_0.telefone,
+        u1_0.status
+    from
+        usuarios u1_0
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.234 s -- in br.com.ifba.infra.BancoDadosIT
+[INFO] Running br.com.ifba.sessao.demo.SessionStateDemoTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in br.com.ifba.sessao.demo.SessionStateDemoTest
+[INFO] Running br.com.ifba.sessao.entity.SessionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in br.com.ifba.sessao.entity.SessionTest
+[INFO] Running br.com.ifba.sessao.estado.SessionStateTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in br.com.ifba.sessao.estado.SessionStateTest
+[INFO] Running br.com.ifba.usuario.entity.UsuarioJpaTest
+Oct 23, 2026 11:04:22 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Oct 23, 2026 11:04:22 PM org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl constructDialect
+WARN: HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+Oct 23, 2026 11:04:22 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [undefined/unknown]
+	Database driver: org.postgresql.Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 14.0
+	Default catalog/schema: unknown/unknown
+	Autocommit mode: undefined/unknown
+	Isolation level: <unknown>
+	JDBC fetch size: undefined/unknown
+	Pool: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+Oct 23, 2026 11:04:22 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Oct 23, 2026 11:04:22 PM org.hibernate.engine.jdbc.connections.internal.ConnectionProviderInitiator instantiateNamedConnectionProvider
+INFO: HHH102002: Instantiating explicit connection provider: org.hibernate.engine.jdbc.connections.internal.UserSuppliedConnectionProviderImpl
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.088 s -- in br.com.ifba.usuario.entity.UsuarioJpaTest
+[INFO] Running br.com.ifba.usuario.entity.UsuarioRelacionamentoTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in br.com.ifba.usuario.entity.UsuarioRelacionamentoTest
+[INFO] Running br.com.ifba.usuario.entity.UsuarioTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in br.com.ifba.usuario.entity.UsuarioTest
+[INFO] Running br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoriaTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoriaTest
+[INFO] Running br.com.ifba.usuario.validar.ValidadorUsuarioTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in br.com.ifba.usuario.validar.ValidadorUsuarioTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 40, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.1:jar (default-jar) @ apexoptima ---
+[INFO] Building jar: /home/henrymf/Workspace/College/pgr03henrymfagundes/target/apexoptima-1.0.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.746 s
+[INFO] Finished at: 2026-10-23T23:04:22-03:00
+[INFO] ------------------------------------------------------------------------

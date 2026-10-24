@@ -3,6 +3,7 @@ package br.com.ifba.infra;
 import br.com.ifba.usuario.entity.Status;
 import br.com.ifba.usuario.entity.Usuario;
 import jakarta.persistence.PersistenceException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -61,7 +62,7 @@ class BancoDadosIT {
                     case "jakarta.persistence.jdbc.password" -> propriedade.setAttribute("value", senha);
                 }
             }
-            configuracao = pasta.resolve("persistence.xml");
+            configuracao = Files.createDirectories(pasta.resolve("META-INF")).resolve("persistence.xml");
             var transformador = TransformerFactory.newInstance();
             transformador.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             transformador.newTransformer().transform(new DOMSource(documento),

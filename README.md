@@ -18,6 +18,19 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 13: Polimorfismo](ATIVIDADES/ATIVIDADE%2013%20-%20POLIMORFISMO)
 - [Atividade 14: JPA e Hibernate](ATIVIDADES/ATIVIDADE%2014%20-%20JPA%20E%20HIBERNATE)
 - [Atividade 15: Collections](ATIVIDADES/ATIVIDADE%2015%20-%20COLLECTIONS)
+- [Atividade 18: Migrations](ATIVIDADES/ATIVIDADE%2018%20-%20MIGRATIONS)
+
+## Atividade 18: Versionando o banco com Flyway
+
+O início de `TelaLogin` chama `BancoDados.inicializar()`: o Flyway aplica as migrations de `src/main/resources/db/migration` antes de o Hibernate validar a unidade `apexoptimaPU`. V1 cria `usuarios`, V2 acrescenta `criado_em` e preenche os registros anteriores com `CURRENT_TIMESTAMP`, e V3 torna essa coluna obrigatória. `Usuario.criadoEm` usa `Instant` e corresponde a `TIMESTAMP(6) WITH TIME ZONE` no PostgreSQL.
+
+Copie `src/main/resources/META-INF/persistence.xml.exemplo` para `persistence.xml` na mesma pasta, preencha a conexão local e mantenha `hibernate.hbm2ddl.auto=validate`. O arquivo local continua ignorado pelo Git. Para executar apenas a migração e a validação, sem abrir o Swing:
+
+```bash
+./mvnw compile exec:java -Dexec.mainClass=br.com.ifba.login.view.TelaLogin -Dexec.args=--validar-banco
+```
+
+Sem `-Dexec.args=--validar-banco`, o mesmo comando abre a tela de login após validar o banco. As telas continuam usando o repositório em memória da Atividade 15; nesta atividade, o JPA verifica o schema na inicialização. A [documentação da atividade](ATIVIDADES/ATIVIDADE%2018%20-%20MIGRATIONS) contém a reprodução do banco vazio, os comandos dos testes, os logs e o print das três linhas de `flyway_schema_history`. A suíte com PostgreSQL passou com 40 testes, incluindo os 36 anteriores.
 
 ## Atividade 14: JPA e Hibernate
 
