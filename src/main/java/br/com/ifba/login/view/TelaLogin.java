@@ -4,6 +4,7 @@
  */
 package br.com.ifba.login.view;
 
+import br.com.ifba.infra.BancoDados;
 import br.com.ifba.usuario.view.TelaCadastroUsuario;
 import br.com.ifba.usuario.entity.Usuario;
 import br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoria;
@@ -173,6 +174,13 @@ public class TelaLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try (var factory = BancoDados.inicializar()) {
+            logger.info("Migrations aplicadas e schema validado pelo Hibernate.");
+        }
+        if (java.util.List.of(args).contains("--validar-banco")) {
+            return;
+        }
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

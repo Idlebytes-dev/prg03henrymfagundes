@@ -15,8 +15,8 @@
             <property name="jakarta.persistence.jdbc.password" value=""/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <!-- A Parte 1 não cria nem altera tabelas automaticamente. -->
-            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+            <!-- O Flyway altera o schema; o Hibernate apenas confere o mapeamento. -->
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
         </properties>
     </persistence-unit>
 </persistence>
