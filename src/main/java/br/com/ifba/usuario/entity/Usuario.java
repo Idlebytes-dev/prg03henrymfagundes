@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -51,6 +52,9 @@ public class Usuario implements Autenticavel {
     @Column(name = "status", nullable = false, length = 10)
     private Status status = Status.INATIVO;
 
+    @Column(name = "criado_em", nullable = false, updatable = false)
+    private Instant criadoEm = Instant.now();
+
     // O mapeamento dos relacionamentos com Perfil fica para uma próxima etapa.
     @Transient
     private Perfil perfilAtivo;
@@ -74,6 +78,10 @@ public class Usuario implements Autenticavel {
 
     public Long getId() {
         return id;
+    }
+
+    public Instant getCriadoEm() {
+        return criadoEm;
     }
 
     public String getName() {

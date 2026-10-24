@@ -1,0 +1,6 @@
+ installed_rank | version |     description     | type |           script            | success
+----------------+---------+---------------------+------+-----------------------------+---------
+              1 | 1       | criar usuarios      | SQL  | V1__criar_usuarios.sql      | t
+              2 | 2       | adicionar criado em | SQL  | V2__adicionar_criado_em.sql | t
+              3 | 3       | exigir criado em    | SQL  | V3__exigir_criado_em.sql    | t
+(3 rows)

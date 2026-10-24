@@ -21,6 +21,7 @@ class UsuarioJpaTest {
             Files.copy(exemplo, configuracao);
         }
         Map<String, Object> propriedades = Map.of(
+                "hibernate.hbm2ddl.auto", "none",
                 "hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect",
                 "hibernate.boot.allow_jdbc_metadata_access", false,
                 "hibernate.connection.provider_class",
