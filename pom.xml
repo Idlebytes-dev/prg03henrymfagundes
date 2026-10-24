@@ -56,6 +56,32 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.3</version>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>integracao</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.5.4</version>
+                        <configuration>
+                            <includes>
+                                <include>**/*Test.java</include>
+                                <include>**/*IT.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
