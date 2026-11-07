@@ -19,6 +19,27 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 14: JPA e Hibernate](ATIVIDADES/ATIVIDADE%2014%20-%20JPA%20E%20HIBERNATE)
 - [Atividade 15: Collections](ATIVIDADES/ATIVIDADE%2015%20-%20COLLECTIONS)
 - [Atividade 18: Migrations](ATIVIDADES/ATIVIDADE%2018%20-%20MIGRATIONS)
+- [Atividade 19: DAO](ATIVIDADES/ATIVIDADE%2019%20-%20DAO)
+
+## Atividade 19: Camada de acesso a dados
+
+`PersistenceEntity`, em `infrastructure.entity`, centraliza o ID `Long` com `@MappedSuperclass`, `@Id` e `@GeneratedValue(IDENTITY)`. As entidades JPA `Usuario` e `Perfil` herdam esse ID. A migration V4 cria `perfis`, sem alterar as migrations anteriores. Os relacionamentos com perfis continuam `@Transient`; `Session` permanece um objeto da estratégia de corrida, sem mapeamento JPA.
+
+`GenericIDao<Entity extends PersistenceEntity>` declara `save`, `update`, `delete`, `findById` e `findAll`. `GenericDao` recebe `Class<Entity>` e concentra as operações em um único fluxo com `try/catch/finally`: as escritas iniciam e confirmam uma transação, revertem uma transação ainda ativa quando há falha e sempre fecham o `EntityManager`. `PersistenciaException` mantém a causa original; erros adicionais de rollback ou fechamento ficam como exceções suprimidas. As consultas também fecham o manager, e `findById` retorna `null` para um ID ausente. `JPAUtil` reutiliza o factory durante a aplicação, mas cria um manager por operação.
+
+`UsuarioDao`/`UsuarioIDao` acrescentam `findByLogin` e a busca por nome ou login; `PerfilDao`/`PerfilIDao` acrescentam `findByNome`. As consultas usam parâmetros JPQL. Os construtores aceitam um fornecedor de managers para testes com banco isolado; as telas recebem `UsuarioIDao`, permitindo uma implementação falsa em memória nos testes da interface.
+
+Cadastro, listagem, busca, edição e exclusão agora chamam o DAO. No cadastro, o menu **Usuários → Listar usuários** abre a listagem. A edição mantém a senha atual quando a nova senha fica em branco, e a exclusão pede confirmação. `SwingWorker` executa o acesso ao banco fora da thread gráfica; `TarefaDaInterface` apresenta os erros do domínio sem expor os detalhes do banco. Nenhuma tela importa JPA ou trata transações. A demonstração de autenticação da tela de login continua com as credenciais fictícias das atividades anteriores.
+
+`ApexOptima` inicializa migrations/JPA antes de abrir a interface e fecha o factory ao encerrar. `TelaLogin.main` delega a esse ponto de entrada e mantém a opção `--validar-banco`. O `persistence.xml.exemplo` registra as duas entidades; no arquivo local, mantenha também a entrada de `Perfil`. As credenciais reais ficam somente no `persistence.xml` ignorado pelo Git.
+
+Verificação sem banco: `./mvnw clean test` executa 48 testes. A suíte completa com o perfil `integracao` executa 55 testes, incluindo CRUD de ambas as entidades, rollback após violações de restrições, reabertura do banco e fechamento dos managers. Use as variáveis `APEXOPTIMA_TEST_JDBC_URL`, `APEXOPTIMA_TEST_DB_USER` e `APEXOPTIMA_TEST_DB_PASSWORD` descritas na Atividade 18:
+
+```bash
+./mvnw -B -Pintegracao clean verify
+```
+
+Os testes criam schemas aleatórios e removem somente seus próprios schemas. A verificação desta entrega usou PostgreSQL descartável na porta local 55419, sem acessar o banco configurado no arquivo local. Os logs reais da suíte, da inicialização e da interface ficam em `ATIVIDADES/ATIVIDADE 19 - DAO`.
 
 ## Atividade 18: Versionando o banco com Flyway
 

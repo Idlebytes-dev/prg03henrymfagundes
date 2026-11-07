@@ -1,0 +1,3 @@
+PASS: registration calls injected DAO; duplicate error is presented
+PASS: listing and editing call injected DAO; blank password preserves existing value
+PASS: confirmed deletion calls DAO and refreshes listing
