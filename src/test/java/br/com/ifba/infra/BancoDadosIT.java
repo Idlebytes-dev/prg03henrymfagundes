@@ -2,6 +2,13 @@ package br.com.ifba.infra;
 
 import br.com.ifba.usuario.entity.Status;
 import br.com.ifba.usuario.entity.Usuario;
+import br.com.ifba.usuario.entity.Perfil;
+import br.com.ifba.usuario.dao.UsuarioDao;
+import br.com.ifba.usuario.dao.UsuarioIDao;
+import br.com.ifba.usuario.dao.PerfilDao;
+import br.com.ifba.usuario.dao.PerfilIDao;
+import br.com.ifba.infrastructure.exception.PersistenciaException;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +17,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.ArrayList;
+import java.util.function.Supplier;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.TransformerFactory;
@@ -81,6 +90,91 @@ class BancoDadosIT {
 
     private Connection conectar() throws SQLException {
         return DriverManager.getConnection(url, usuario, senha);
+    }
+
+    @Test
+    void deveExecutarCrudUsuarioEConsultasFechandoTodosOsManagers() throws Exception {
+        try (var factory = BancoDados.inicializar(configuracao.toUri().toURL())) {
+            var managers = new ArrayList<EntityManager>();
+            Supplier<EntityManager> abrir = () -> {
+                var manager = factory.createEntityManager();
+                managers.add(manager);
+                return manager;
+            };
+            UsuarioIDao dao = new UsuarioDao(abrir);
+            Usuario cadastro = novoUsuario("ana");
+            assertSame(cadastro, dao.save(cadastro));
+            assertNotNull(cadastro.getId());
+            assertEquals("Ana", dao.findById(cadastro.getId()).getName());
+            assertEquals(cadastro.getId(), dao.findByLogin("ana").getId());
+            assertNull(dao.findByLogin("ausente"));
+            assertEquals(1, dao.findAll().size());
+            assertEquals(1, dao.findByNomeOuLogin("ANA").size());
+            assertTrue(dao.findByNomeOuLogin("' or 1=1 --").isEmpty());
+
+            cadastro.setName("Ana Atualizada");
+            assertEquals("Ana Atualizada", dao.update(cadastro).getName());
+            assertEquals("Ana Atualizada", new UsuarioDao(abrir).findById(cadastro.getId()).getName());
+            dao.delete(cadastro);
+
+            assertNull(dao.findById(cadastro.getId()));
+            assertTrue(dao.findAll().isEmpty());
+            assertTrue(managers.stream().noneMatch(EntityManager::isOpen));
+        }
+    }
+
+    @Test
+    void deveReutilizarCrudGenericoParaPerfilComConsultaPorNome() throws Exception {
+        try (var factory = BancoDados.inicializar(configuracao.toUri().toURL())) {
+            PerfilIDao dao = new PerfilDao(factory::createEntityManager);
+            Perfil perfil = dao.save(new Perfil("ENGENHEIRO", "Estratégia"));
+            assertNotNull(perfil.getId());
+            assertEquals(perfil.getId(), dao.findByNome("ENGENHEIRO").getId());
+            assertNull(dao.findByNome("AUSENTE"));
+            assertEquals(1, dao.findAll().size());
+
+            perfil.setDescricao("Telemetria e estratégia");
+            dao.update(perfil);
+            assertEquals("Telemetria e estratégia", dao.findById(perfil.getId()).getDescricao());
+            assertThrows(PersistenciaException.class,
+                    () -> dao.save(new Perfil("ENGENHEIRO", "Duplicado")));
+            assertEquals(1, dao.findAll().size());
+            dao.delete(perfil);
+            assertTrue(dao.findAll().isEmpty());
+        }
+    }
+
+    @Test
+    void deveTraduzirFalhasReaisReverterEPermitirProximaOperacao() throws Exception {
+        try (var factory = BancoDados.inicializar(configuracao.toUri().toURL())) {
+            var managers = new ArrayList<EntityManager>();
+            UsuarioIDao dao = new UsuarioDao(() -> {
+                var manager = factory.createEntityManager();
+                managers.add(manager);
+                return manager;
+            });
+            Usuario original = dao.save(novoUsuario("ana"));
+            var erro = assertThrows(PersistenciaException.class, () -> dao.save(novoUsuario("ana")));
+            assertInstanceOf(PersistenceException.class, erro.getCause());
+            assertEquals(1, dao.findAll().size());
+            assertEquals(original.getId(), dao.findByLogin("ana").getId());
+
+            original.setName(null);
+            assertThrows(PersistenciaException.class, () -> dao.update(original));
+            assertEquals("Ana", dao.findById(original.getId()).getName());
+            Usuario inexistente = novoUsuario("ausente");
+            inexistente.setId(Long.MAX_VALUE);
+            assertThrows(PersistenciaException.class, () -> dao.delete(inexistente));
+
+            assertNotNull(dao.save(novoUsuario("bia")).getId());
+            assertEquals(2, dao.findAll().size());
+            assertTrue(managers.stream().noneMatch(EntityManager::isOpen));
+        }
+    }
+
+    private Usuario novoUsuario(String login) {
+        return new Usuario("Ana", "52998224725", "F", "2000-01-01",
+                "71999999999", "ana@example.com", login, "senha-teste");
     }
 
     @Test
