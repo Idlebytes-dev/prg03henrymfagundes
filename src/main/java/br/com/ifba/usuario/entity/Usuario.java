@@ -5,13 +5,11 @@
 package br.com.ifba.usuario.entity;
 
 import br.com.ifba.usuario.interfaces.Autenticavel;
+import br.com.ifba.infrastructure.entity.PersistenceEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import java.time.Instant;
@@ -26,11 +24,7 @@ import java.util.Objects;
 //User class
 @Entity
 @Table(name = "usuarios")
-public class Usuario implements Autenticavel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Usuario extends PersistenceEntity implements Autenticavel {
 
     @Column(name = "nome", nullable = false, length = 120)
     private String name;
@@ -74,10 +68,6 @@ public class Usuario implements Autenticavel {
         this.email = email;
         this.login = login;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Instant getCriadoEm() {

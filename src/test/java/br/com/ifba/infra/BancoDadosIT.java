@@ -105,7 +105,7 @@ class BancoDadosIT {
         try (var conexao = conectar(); var comando = conexao.createStatement();
              var linhas = comando.executeQuery(
                      "SELECT version, success FROM flyway_schema_history ORDER BY installed_rank")) {
-            for (String versao : new String[]{"1", "2", "3"}) {
+            for (String versao : new String[]{"1", "2", "3", "4"}) {
                 assertTrue(linhas.next());
                 assertEquals(versao, linhas.getString("version"));
                 assertTrue(linhas.getBoolean("success"));
@@ -118,7 +118,7 @@ class BancoDadosIT {
             assertEquals(1L, manager.createQuery("select count(u) from Usuario u", Long.class)
                     .getSingleResult());
         }
-        assertEquals(3, Flyway.configure().dataSource(url, usuario, senha).load().info().applied().length);
+        assertEquals(4, Flyway.configure().dataSource(url, usuario, senha).load().info().applied().length);
     }
 
     @Test

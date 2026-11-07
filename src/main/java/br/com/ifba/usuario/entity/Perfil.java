@@ -4,13 +4,22 @@
  */
 package br.com.ifba.usuario.entity;
 
+import br.com.ifba.infrastructure.entity.PersistenceEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 /**
  *
  * @author henrymf
  */
-public class Perfil {
+@Entity
+@Table(name = "perfis")
+public class Perfil extends PersistenceEntity {
 
+    @Column(name = "nome", nullable = false, unique = true, length = 50)
     private String nome;
+    @Column(name = "descricao", length = 255)
     private String descricao;
 
     public Perfil() {
