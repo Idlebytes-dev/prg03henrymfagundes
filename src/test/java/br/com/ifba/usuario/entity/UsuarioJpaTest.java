@@ -36,6 +36,10 @@ class UsuarioJpaTest {
                     Usuario.class)
                     .setParameter("login", "engenheiro")
                     .setParameter("status", Status.ATIVO));
+            assertDoesNotThrow(() -> manager.createQuery(
+                    "select p from Perfil p where p.nome = :nome", Perfil.class));
+            assertNotNull(factory.getMetamodel().entity(Usuario.class).getId(Long.class));
+            assertNotNull(factory.getMetamodel().entity(Perfil.class).getId(Long.class));
         }
     }
 }

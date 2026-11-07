@@ -6,7 +6,10 @@ package br.com.ifba.usuario.view;
 import br.com.ifba.login.view.TelaLogin;
 import br.com.ifba.usuario.validar.ValidadorUsuario;
 import br.com.ifba.usuario.entity.Usuario;
-import br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoria;
+import br.com.ifba.ApexOptima;
+import br.com.ifba.infrastructure.view.TarefaDaInterface;
+import br.com.ifba.usuario.dao.UsuarioDao;
+import br.com.ifba.usuario.dao.UsuarioIDao;
 import java.util.Objects;
 /**
  *
@@ -14,19 +17,26 @@ import java.util.Objects;
  */
 public class TelaCadastroUsuario extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastroUsuario.class.getName());
-    private final RepositorioUsuarioEmMemoria repositorio;
+    private final UsuarioIDao usuarioDao;
 
     /**
      * Creates new form TelaCadastroUsuario
      */
     public TelaCadastroUsuario() {
-        this(new RepositorioUsuarioEmMemoria());
+        this(new UsuarioDao());
     }
 
-    public TelaCadastroUsuario(RepositorioUsuarioEmMemoria repositorio) {
-        this.repositorio = Objects.requireNonNull(repositorio);
+    public TelaCadastroUsuario(UsuarioIDao usuarioDao) {
+        this.usuarioDao = Objects.requireNonNull(usuarioDao);
         initComponents();
+        var barra = new javax.swing.JMenuBar();
+        var menu = new javax.swing.JMenu("Usuários");
+        var listar = new javax.swing.JMenuItem("Listar usuários");
+        listar.addActionListener(event -> new TelaListagemUsuario(usuarioDao).setVisible(true));
+        menu.add(listar);
+        barra.add(menu);
+        setJMenuBar(barra);
+        pack();
     }
 
     /**
@@ -199,7 +209,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
 
     private void btnCancelSigupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelSigupActionPerformed
         //
-        TelaLogin telaLogin = new TelaLogin(repositorio);
+        TelaLogin telaLogin = new TelaLogin(usuarioDao);
         telaLogin.setVisible(true);
         
         this.dispose();
@@ -265,25 +275,13 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
             usuario.setLogin(login);
             usuario.setPassword(password);
 
-            try {
-                repositorio.cadastrar(usuario);
-            } catch (IllegalArgumentException ex) {
+            TarefaDaInterface.executar(this, btnSignUp, () -> usuarioDao.save(usuario), salvo ->
                 javax.swing.JOptionPane.showMessageDialog(
-                        this,
-                        ex.getMessage(),
-                        "Erro no cadastro",
-                        javax.swing.JOptionPane.ERROR_MESSAGE
-                );
-                txtUser.requestFocusInWindow();
-                return;
-            }
-            
-            javax.swing.JOptionPane.showMessageDialog(
                     this,
-                    "Usuário " + usuario.getName() + " cadastrado com sucesso!",
+                    "Usuário " + salvo.getName() + " cadastrado com sucesso!",
                     "Cadastro",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE
-            );
+                ));
             return;
         }
     }//GEN-LAST:event_btnSignUpActionPerformed
@@ -292,25 +290,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaCadastroUsuario().setVisible(true));
+        ApexOptima.iniciar(args, TelaCadastroUsuario::new);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

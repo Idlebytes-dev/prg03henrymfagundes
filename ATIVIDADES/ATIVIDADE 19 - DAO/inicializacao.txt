@@ -1,0 +1,43 @@
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.FlywayExecutor init
+INFO: Environment: default
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.FlywayExecutor init
+INFO: Database: jdbc:postgresql:******** (PostgreSQL 18.6)
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "public"."flyway_schema_history" does not exist yet
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.019s)
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "public"."flyway_schema_history" ...
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "public": << Empty Schema >>
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "public" to version "1 - criar usuarios"
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "public" to version "2 - adicionar criado em"
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "public" to version "3 - exigir criado em"
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "public" to version "4 - criar perfis"
+Nov 06, 2026 9:38:24 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 4 migrations to schema "public", now at version v4 (execution time 00:00.013s)
+Nov 06, 2026 9:38:24 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+INFO: HHH008540: Processing PersistenceUnitInfo [name: apexoptimaPU]
+Nov 06, 2026 9:38:24 PM org.hibernate.Version logVersion
+INFO: HHH000001: Hibernate ORM core version 7.4.13.Final
+Nov 06, 2026 9:38:24 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProvider configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+Nov 06, 2026 9:38:24 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://127.0.0.1:55419/apexoptima_dao_test]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: apexoptima_dao_test/public
+	Autocommit mode: false
+	Isolation level: READ_COMMITTED
+	JDBC fetch size: none
+	Pool: DriverManagerConnectionProvider
+	Minimum pool size: 1
+	Maximum pool size: 20
+Nov 06, 2026 9:38:25 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)

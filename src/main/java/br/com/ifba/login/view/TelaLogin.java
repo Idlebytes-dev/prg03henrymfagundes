@@ -4,10 +4,11 @@
  */
 package br.com.ifba.login.view;
 
-import br.com.ifba.infra.BancoDados;
+import br.com.ifba.ApexOptima;
 import br.com.ifba.usuario.view.TelaCadastroUsuario;
 import br.com.ifba.usuario.entity.Usuario;
-import br.com.ifba.usuario.repository.RepositorioUsuarioEmMemoria;
+import br.com.ifba.usuario.dao.UsuarioDao;
+import br.com.ifba.usuario.dao.UsuarioIDao;
 import java.util.Objects;
 import javax.swing.JOptionPane;
 /**
@@ -16,18 +17,17 @@ import javax.swing.JOptionPane;
  */
 public class TelaLogin extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
-    private final RepositorioUsuarioEmMemoria repositorio;
+    private final UsuarioIDao usuarioDao;
 
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
-        this(new RepositorioUsuarioEmMemoria());
+        this(new UsuarioDao());
     }
 
-    public TelaLogin(RepositorioUsuarioEmMemoria repositorio) {
-        this.repositorio = Objects.requireNonNull(repositorio);
+    public TelaLogin(UsuarioIDao usuarioDao) {
+        this.usuarioDao = Objects.requireNonNull(usuarioDao);
         initComponents();
     }
 
@@ -163,7 +163,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void lblClickToSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClickToSignupMouseClicked
        //Creates and displays the registration frame
-       TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario(repositorio);
+       TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario(usuarioDao);
        telaCadastro.setVisible(true);
        
        //Closes/Hides the current login frame
@@ -174,32 +174,7 @@ public class TelaLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        try (var factory = BancoDados.inicializar()) {
-            logger.info("Migrations aplicadas e schema validado pelo Hibernate.");
-        }
-        if (java.util.List.of(args).contains("--validar-banco")) {
-            return;
-        }
-
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaLogin().setVisible(true));
+        ApexOptima.main(args);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
