@@ -6,9 +6,10 @@ package br.com.ifba.login.view;
 
 import br.com.ifba.ApexOptima;
 import br.com.ifba.usuario.view.TelaCadastroUsuario;
-import br.com.ifba.usuario.entity.Usuario;
-import br.com.ifba.usuario.dao.UsuarioDao;
-import br.com.ifba.usuario.dao.UsuarioIDao;
+import br.com.ifba.infrastructure.view.TarefaDaInterface;
+import br.com.ifba.usuario.view.TelaListagemUsuario;
+import br.com.ifba.usuario.controller.PerfilIController;
+import br.com.ifba.usuario.controller.UsuarioIController;
 import java.util.Objects;
 import javax.swing.JOptionPane;
 /**
@@ -17,17 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class TelaLogin extends javax.swing.JFrame {
     
-    private final UsuarioIDao usuarioDao;
+    private final UsuarioIController usuarios;
+    private final PerfilIController perfis;
 
-    /**
-     * Creates new form TelaLogin
-     */
-    public TelaLogin() {
-        this(new UsuarioDao());
-    }
-
-    public TelaLogin(UsuarioIDao usuarioDao) {
-        this.usuarioDao = Objects.requireNonNull(usuarioDao);
+    public TelaLogin(UsuarioIController usuarios, PerfilIController perfis) {
+        this.usuarios = Objects.requireNonNull(usuarios);
+        this.perfis = Objects.requireNonNull(perfis);
         initComponents();
     }
 
@@ -136,38 +132,22 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginActionPerformed
 
     private void btnSigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigninActionPerformed
-        //Captures the input in the textboxes
-        String loginInput = txtLogin.getText();
-        String passwordInput = new String(txtPassword.getPassword());
-        
-        //Creates a user with mock credentials for authentication
-        Usuario usuario = new Usuario();
-        usuario.setLogin("mockLogin");
-        usuario.setPassword("mockPassword");
-
-        if (usuario.autenticar(loginInput, passwordInput)) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Acesso liberado!",
-                    "Sucesso",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-        } else {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Acesso negado: login ou senha invalidos",
-                    "Erro",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+        String login = txtLogin.getText();
+        String senha = new String(txtPassword.getPassword());
+        TarefaDaInterface.executar(this, btnSignin, () -> usuarios.autenticar(login, senha), autorizado -> {
+            if (autorizado) {
+                new TelaListagemUsuario(usuarios, perfis).setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Login ou senha inválidos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        });
     }//GEN-LAST:event_btnSigninActionPerformed
 
     private void lblClickToSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClickToSignupMouseClicked
-       //Creates and displays the registration frame
-       TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario(usuarioDao);
-       telaCadastro.setVisible(true);
-       
-       //Closes/Hides the current login frame
-       this.dispose();
+        var cadastro = new TelaCadastroUsuario(usuarios);
+        cadastro.setLocationRelativeTo(this);
+        cadastro.setVisible(true);
     }//GEN-LAST:event_lblClickToSignupMouseClicked
 
     /**

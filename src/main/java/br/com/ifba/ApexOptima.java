@@ -2,9 +2,17 @@ package br.com.ifba;
 
 import br.com.ifba.infrastructure.JPAUtil;
 import br.com.ifba.login.view.TelaLogin;
+import br.com.ifba.usuario.controller.PerfilController;
+import br.com.ifba.usuario.controller.PerfilIController;
+import br.com.ifba.usuario.controller.UsuarioController;
+import br.com.ifba.usuario.controller.UsuarioIController;
+import br.com.ifba.usuario.dao.PerfilDao;
+import br.com.ifba.usuario.dao.UsuarioDao;
+import br.com.ifba.usuario.service.PerfilService;
+import br.com.ifba.usuario.service.UsuarioService;
 import java.awt.EventQueue;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.function.BiFunction;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -17,7 +25,8 @@ public final class ApexOptima {
         iniciar(args, TelaLogin::new);
     }
 
-    public static void iniciar(String[] args, Supplier<? extends JFrame> tela) {
+    public static void iniciar(String[] args,
+            BiFunction<UsuarioIController, PerfilIController, ? extends JFrame> tela) {
         JPAUtil.inicializar();
         if (List.of(args).contains("--validar-banco")) {
             JPAUtil.fechar();
@@ -35,6 +44,8 @@ public final class ApexOptima {
             java.util.logging.Logger.getLogger(ApexOptima.class.getName())
                     .log(java.util.logging.Level.WARNING, "Não foi possível aplicar o tema Nimbus.", ex);
         }
-        EventQueue.invokeLater(() -> tela.get().setVisible(true));
+        var usuarios = new UsuarioController(new UsuarioService(new UsuarioDao()));
+        var perfis = new PerfilController(new PerfilService(new PerfilDao()));
+        EventQueue.invokeLater(() -> tela.apply(usuarios, perfis).setVisible(true));
     }
 }

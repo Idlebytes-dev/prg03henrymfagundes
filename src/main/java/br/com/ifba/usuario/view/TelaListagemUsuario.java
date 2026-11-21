@@ -2,8 +2,8 @@ package br.com.ifba.usuario.view;
 
 import br.com.ifba.ApexOptima;
 import br.com.ifba.infrastructure.view.TarefaDaInterface;
-import br.com.ifba.usuario.dao.UsuarioDao;
-import br.com.ifba.usuario.dao.UsuarioIDao;
+import br.com.ifba.usuario.controller.PerfilIController;
+import br.com.ifba.usuario.controller.UsuarioIController;
 import br.com.ifba.usuario.entity.Usuario;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -24,9 +24,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/** Consulta, edição e exclusão por contrato DAO, sem acesso direto ao JPA. */
+/** Consulta e manutenção de usuários. */
 public class TelaListagemUsuario extends JFrame {
-    private final UsuarioIDao usuarioDao;
+    private final UsuarioIController usuariosController;
     private final JTextField busca = new JTextField(22);
     private final JButton buscar = new JButton("Buscar");
     private final JButton editar = new JButton("Editar usuário");
@@ -36,13 +36,10 @@ public class TelaListagemUsuario extends JFrame {
     private final JTable tabela;
     private List<Usuario> usuarios = List.of();
 
-    public TelaListagemUsuario() {
-        this(new UsuarioDao());
-    }
-
-    public TelaListagemUsuario(UsuarioIDao usuarioDao) {
+    public TelaListagemUsuario(UsuarioIController usuariosController, PerfilIController perfisController) {
         super("ApexOptima - Usuários");
-        this.usuarioDao = Objects.requireNonNull(usuarioDao);
+        this.usuariosController = Objects.requireNonNull(usuariosController);
+        Objects.requireNonNull(perfisController);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         JPanel conteudo = new JPanel(new BorderLayout(8, 8));
@@ -55,8 +52,7 @@ public class TelaListagemUsuario extends JFrame {
         busca.addActionListener(event -> carregar());
         JButton novo = new JButton("Novo usuário");
         novo.addActionListener(event -> {
-            TelaCadastroUsuario cadastro = new TelaCadastroUsuario(usuarioDao);
-            cadastro.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            TelaCadastroUsuario cadastro = new TelaCadastroUsuario(usuariosController);
             cadastro.setLocationRelativeTo(this);
             atualizarAoFechar(cadastro);
             cadastro.setVisible(true);
@@ -65,6 +61,9 @@ public class TelaListagemUsuario extends JFrame {
         cabecalho.add(busca);
         cabecalho.add(buscar);
         cabecalho.add(novo);
+        JButton perfis = new JButton("Perfis");
+        perfis.addActionListener(event -> new TelaPerfis(perfisController).setVisible(true));
+        cabecalho.add(perfis);
 
         modelo = new DefaultTableModel(
                 new String[]{"Nome", "Login", "Email", "Status"}, 0) {
@@ -109,7 +108,7 @@ public class TelaListagemUsuario extends JFrame {
         if (!buscar.isEnabled()) return;
         String termo = busca.getText().trim();
         TarefaDaInterface.executar(this, buscar,
-                () -> termo.isEmpty() ? usuarioDao.findAll() : usuarioDao.findByNomeOuLogin(termo),
+                () -> usuariosController.listar(termo),
                 this::mostrarUsuarios);
     }
 
@@ -132,12 +131,8 @@ public class TelaListagemUsuario extends JFrame {
     private void editarSelecionado() {
         if (!buscar.isEnabled() || tabela.getSelectedRow() < 0) return;
         Long id = usuarios.get(tabela.getSelectedRow()).getId();
-        TarefaDaInterface.executar(this, buscar, () -> usuarioDao.findById(id), usuario -> {
-            if (usuario == null) {
-                JOptionPane.showMessageDialog(this, "O usuário não foi encontrado. Atualize a listagem.");
-                return;
-            }
-            var tela = new TelaEdicaoUsuario(usuarioDao, usuario);
+        TarefaDaInterface.executar(this, buscar, () -> usuariosController.buscar(id), usuario -> {
+            var tela = new TelaEdicaoUsuario(usuariosController, usuario);
             atualizarAoFechar(tela);
             tela.setLocationRelativeTo(this);
             tela.setVisible(true);
@@ -160,8 +155,8 @@ public class TelaListagemUsuario extends JFrame {
                 "Confirmar exclusão", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) return;
         String termo = busca.getText().trim();
         TarefaDaInterface.executar(this, buscar, () -> {
-            usuarioDao.delete(usuario);
-            return termo.isEmpty() ? usuarioDao.findAll() : usuarioDao.findByNomeOuLogin(termo);
+            usuariosController.excluir(usuario.getId());
+            return usuariosController.listar(termo);
         }, this::mostrarUsuarios);
     }
 

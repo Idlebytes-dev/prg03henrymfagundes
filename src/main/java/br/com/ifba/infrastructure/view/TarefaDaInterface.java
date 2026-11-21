@@ -1,6 +1,7 @@
 package br.com.ifba.infrastructure.view;
 
 import br.com.ifba.infrastructure.exception.PersistenciaException;
+import br.com.ifba.infrastructure.exception.RegraNegocioException;
 import java.awt.Component;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
@@ -32,8 +33,9 @@ public final class TarefaDaInterface {
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 } catch (ExecutionException ex) {
-                    String mensagem = ex.getCause() instanceof PersistenciaException
-                            ? ex.getCause().getMessage() : "Não foi possível concluir a operação.";
+                    Throwable causa = ex.getCause();
+                    String mensagem = causa instanceof RegraNegocioException || causa instanceof PersistenciaException
+                            ? causa.getMessage() : "Não foi possível concluir a operação.";
                     JOptionPane.showMessageDialog(tela, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
