@@ -4,11 +4,18 @@
  */
 package br.com.ifba.usuario.validar;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  *
  * @author henrymf
  */
 public class ValidadorUsuario {
+    private static final List<String> PALAVRAS_PROIBIDAS = List.of(
+            ResourceBundle.getBundle("br.com.ifba.usuario.validar.login", Locale.ROOT)
+                    .getString("palavrasProibidas").split("\\s*,\\s*"));
 
     public static boolean camposPreenchidos(String... campos) {
         if (campos == null || campos.length == 0) {
@@ -24,8 +31,8 @@ public class ValidadorUsuario {
         return true;
     }
 
-    public static boolean senhasConferem(String senha, String confirmacao) {
-        return senha != null && senha.equals(confirmacao);
+    public static boolean senhasConferem(String senha, String confirmacaoSenha) {
+        return senha != null && senha.equals(confirmacaoSenha);
     }
 
     public static boolean cpfValido(String cpf) {
@@ -33,20 +40,19 @@ public class ValidadorUsuario {
             return false;
         }
 
-        String cpfLimpo = cpf.trim().replace(".", "").replace("-", "");
-        return cpfLimpo.length() == 11
-                && cpfLimpo.chars().noneMatch(Character::isLetter);
+        String cpfSemPontuacao = cpf.trim().replace(".", "").replace("-", "");
+        return cpfSemPontuacao.length() == 11
+                && cpfSemPontuacao.chars().noneMatch(Character::isLetter);
     }
 
-    public static boolean contemPalavraProibida(String text){
-        if (text == null || text.isBlank()){
+    public static boolean contemPalavraProibida(String login) {
+        if (login == null || login.isBlank()) {
             return false;
         }
-        String[] forbiddenWords = {"admin", "teste", "root", "senha"};
-        String normalizedText = text.toLowerCase();
-        
-        for (String word : forbiddenWords){
-            if (normalizedText.contains(word)){
+        String loginEmMinusculas = login.toLowerCase();
+
+        for (String palavraProibida : PALAVRAS_PROIBIDAS) {
+            if (loginEmMinusculas.contains(palavraProibida)) {
                 return true;
             }
         }
