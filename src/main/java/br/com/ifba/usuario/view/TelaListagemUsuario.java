@@ -1,8 +1,7 @@
 package br.com.ifba.usuario.view;
 
-import br.com.ifba.ApexOptima;
+import br.com.ifba.ApexOptimaApplication;
 import br.com.ifba.infrastructure.view.TarefaDaInterface;
-import br.com.ifba.usuario.controller.PerfilIController;
 import br.com.ifba.usuario.controller.UsuarioIController;
 import br.com.ifba.usuario.entity.Usuario;
 import java.awt.BorderLayout;
@@ -23,10 +22,16 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /** Consulta e manutenção de usuários. */
+@Component
+@Scope("prototype")
 public class TelaListagemUsuario extends JFrame {
     private final UsuarioIController usuariosController;
+    private final ObjectProvider<TelaEdicaoUsuario> edicoes;
     private final JTextField busca = new JTextField(22);
     private final JButton buscar = new JButton("Buscar");
     private final JButton editar = new JButton("Editar usuário");
@@ -36,10 +41,12 @@ public class TelaListagemUsuario extends JFrame {
     private final JTable tabela;
     private List<Usuario> usuarios = List.of();
 
-    public TelaListagemUsuario(UsuarioIController usuariosController, PerfilIController perfisController) {
+    public TelaListagemUsuario(UsuarioIController usuariosController,
+            ObjectProvider<TelaCadastroUsuario> cadastros, ObjectProvider<TelaEdicaoUsuario> edicoes,
+            ObjectProvider<TelaPerfis> telasPerfis) {
         super("ApexOptima - Usuários");
         this.usuariosController = Objects.requireNonNull(usuariosController);
-        Objects.requireNonNull(perfisController);
+        this.edicoes = edicoes;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         JPanel conteudo = new JPanel(new BorderLayout(8, 8));
@@ -52,7 +59,7 @@ public class TelaListagemUsuario extends JFrame {
         busca.addActionListener(event -> carregar());
         JButton novo = new JButton("Novo usuário");
         novo.addActionListener(event -> {
-            TelaCadastroUsuario cadastro = new TelaCadastroUsuario(usuariosController);
+            TelaCadastroUsuario cadastro = cadastros.getObject();
             cadastro.setLocationRelativeTo(this);
             atualizarAoFechar(cadastro);
             cadastro.setVisible(true);
@@ -62,7 +69,7 @@ public class TelaListagemUsuario extends JFrame {
         cabecalho.add(buscar);
         cabecalho.add(novo);
         JButton perfis = new JButton("Perfis");
-        perfis.addActionListener(event -> new TelaPerfis(perfisController).setVisible(true));
+        perfis.addActionListener(event -> telasPerfis.getObject().setVisible(true));
         cabecalho.add(perfis);
 
         modelo = new DefaultTableModel(
@@ -132,7 +139,8 @@ public class TelaListagemUsuario extends JFrame {
         if (!buscar.isEnabled() || tabela.getSelectedRow() < 0) return;
         Long id = usuarios.get(tabela.getSelectedRow()).getId();
         TarefaDaInterface.executar(this, buscar, () -> usuariosController.buscar(id), usuario -> {
-            var tela = new TelaEdicaoUsuario(usuariosController, usuario);
+            var tela = edicoes.getObject();
+            tela.editar(usuario);
             atualizarAoFechar(tela);
             tela.setLocationRelativeTo(this);
             tela.setVisible(true);
@@ -161,6 +169,6 @@ public class TelaListagemUsuario extends JFrame {
     }
 
     public static void main(String[] args) {
-        ApexOptima.iniciar(args, TelaListagemUsuario::new);
+        ApexOptimaApplication.iniciar(args, TelaListagemUsuario.class);
     }
 }

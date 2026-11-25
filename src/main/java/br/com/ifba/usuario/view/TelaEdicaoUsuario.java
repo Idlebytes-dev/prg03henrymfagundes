@@ -1,6 +1,6 @@
 package br.com.ifba.usuario.view;
 
-import br.com.ifba.ApexOptima;
+import br.com.ifba.ApexOptimaApplication;
 import br.com.ifba.infrastructure.view.TarefaDaInterface;
 import br.com.ifba.usuario.dto.DadosUsuario;
 import br.com.ifba.usuario.controller.UsuarioIController;
@@ -22,11 +22,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /** Edita o usuário selecionado e envia os dados ao controller. */
+@Component
+@Scope("prototype")
 public class TelaEdicaoUsuario extends JFrame {
     private final UsuarioIController usuarios;
-    private final Usuario usuario;
+    private Usuario usuario;
     private final JTextField nome = new JTextField(28);
     private final JTextField cpf = new JTextField(28);
     private final JComboBox<String> genero = new JComboBox<>(new String[]{
@@ -41,9 +46,14 @@ public class TelaEdicaoUsuario extends JFrame {
     private final JButton salvar = new JButton("Salvar alterações");
 
     public TelaEdicaoUsuario(UsuarioIController usuarios, Usuario usuario) {
+        this(usuarios);
+        editar(usuario);
+    }
+
+    @Autowired
+    public TelaEdicaoUsuario(UsuarioIController usuarios) {
         super("ApexOptima - Editar usuário");
         this.usuarios = Objects.requireNonNull(usuarios);
-        this.usuario = Objects.requireNonNull(usuario);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         JPanel formulario = new JPanel(new GridBagLayout());
@@ -60,6 +70,7 @@ public class TelaEdicaoUsuario extends JFrame {
         adicionarCampo(formulario, 8, "Nova senha (opcional):", senha);
         adicionarCampo(formulario, 9, "Confirmar nova senha:", confirmacao);
 
+        salvar.setEnabled(false);
         salvar.addActionListener(event -> salvarAlteracoes());
         JButton cancelar = new JButton("Cancelar");
         cancelar.addActionListener(event -> dispose());
@@ -73,10 +84,11 @@ public class TelaEdicaoUsuario extends JFrame {
         pack();
         setMinimumSize(getSize());
         setLocationRelativeTo(null);
-        preencher();
     }
 
-    private void preencher() {
+    void editar(Usuario usuario) {
+        this.usuario = Objects.requireNonNull(usuario);
+        salvar.setEnabled(true);
         nome.setText(usuario.getName());
         cpf.setText(usuario.getCpf());
         if (usuario.getGender() != null) {
@@ -118,6 +130,6 @@ public class TelaEdicaoUsuario extends JFrame {
     }
 
     public static void main(String[] args) {
-        ApexOptima.iniciar(args, TelaListagemUsuario::new);
+        ApexOptimaApplication.iniciar(args, TelaListagemUsuario.class);
     }
 }

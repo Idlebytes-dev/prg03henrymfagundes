@@ -20,8 +20,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /** Selecionar um perfil abre seus dados para edição. Novo limpa a seleção. */
+@Component
+@Scope("prototype")
 public final class TelaPerfis extends JFrame {
     private final PerfilIController controller;
     private final JList<String> lista = new JList<>();

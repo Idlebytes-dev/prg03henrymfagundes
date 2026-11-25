@@ -4,12 +4,16 @@ import br.com.ifba.infrastructure.dao.GenericDao;
 import br.com.ifba.usuario.entity.Perfil;
 import jakarta.persistence.EntityManager;
 import java.util.function.Supplier;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PerfilDao extends GenericDao<Perfil> implements PerfilIDao {
     public PerfilDao() {
         super(Perfil.class);
     }
 
+    @Autowired
     public PerfilDao(Supplier<EntityManager> managers) {
         super(Perfil.class, managers);
     }

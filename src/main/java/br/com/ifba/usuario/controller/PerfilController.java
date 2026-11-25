@@ -4,7 +4,9 @@ import br.com.ifba.usuario.entity.Perfil;
 import br.com.ifba.usuario.service.PerfilIService;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public final class PerfilController implements PerfilIController {
     private final PerfilIService service;
 

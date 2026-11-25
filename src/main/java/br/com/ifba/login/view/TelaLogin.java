@@ -4,26 +4,33 @@
  */
 package br.com.ifba.login.view;
 
-import br.com.ifba.ApexOptima;
+import br.com.ifba.ApexOptimaApplication;
 import br.com.ifba.usuario.view.TelaCadastroUsuario;
 import br.com.ifba.infrastructure.view.TarefaDaInterface;
 import br.com.ifba.usuario.view.TelaListagemUsuario;
-import br.com.ifba.usuario.controller.PerfilIController;
 import br.com.ifba.usuario.controller.UsuarioIController;
 import java.util.Objects;
 import javax.swing.JOptionPane;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 /**
  *
  * @author henrymf
  */
+@Component
+@Scope("prototype")
 public class TelaLogin extends javax.swing.JFrame {
     
     private final UsuarioIController usuarios;
-    private final PerfilIController perfis;
+    private final ObjectProvider<TelaListagemUsuario> listagens;
+    private final ObjectProvider<TelaCadastroUsuario> cadastros;
 
-    public TelaLogin(UsuarioIController usuarios, PerfilIController perfis) {
+    public TelaLogin(UsuarioIController usuarios, ObjectProvider<TelaListagemUsuario> listagens,
+                     ObjectProvider<TelaCadastroUsuario> cadastros) {
         this.usuarios = Objects.requireNonNull(usuarios);
-        this.perfis = Objects.requireNonNull(perfis);
+        this.listagens = listagens;
+        this.cadastros = cadastros;
         initComponents();
     }
 
@@ -136,7 +143,7 @@ public class TelaLogin extends javax.swing.JFrame {
         String senha = new String(txtPassword.getPassword());
         TarefaDaInterface.executar(this, btnSignin, () -> usuarios.autenticar(login, senha), autorizado -> {
             if (autorizado) {
-                new TelaListagemUsuario(usuarios, perfis).setVisible(true);
+                listagens.getObject().setVisible(true);
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Login ou senha inválidos.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -145,7 +152,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSigninActionPerformed
 
     private void lblClickToSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClickToSignupMouseClicked
-        var cadastro = new TelaCadastroUsuario(usuarios);
+        var cadastro = cadastros.getObject();
         cadastro.setLocationRelativeTo(this);
         cadastro.setVisible(true);
     }//GEN-LAST:event_lblClickToSignupMouseClicked
@@ -154,7 +161,7 @@ public class TelaLogin extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        ApexOptima.main(args);
+        ApexOptimaApplication.main(args);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

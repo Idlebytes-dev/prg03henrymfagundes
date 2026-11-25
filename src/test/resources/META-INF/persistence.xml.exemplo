@@ -9,7 +9,7 @@
         <class>br.com.ifba.usuario.entity.Perfil</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <!-- Copie para persistence.xml e preencha apenas no arquivo local. -->
+            <!-- Os testes preenchem esta configuração para cada schema temporário. -->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value=""/>
             <property name="jakarta.persistence.jdbc.user" value=""/>
