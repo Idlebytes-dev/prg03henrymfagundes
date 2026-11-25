@@ -5,7 +5,9 @@ import br.com.ifba.usuario.dao.PerfilIDao;
 import br.com.ifba.usuario.entity.Perfil;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.stereotype.Service;
 
+@Service
 public final class PerfilService implements PerfilIService {
     private final PerfilIDao dao;
 

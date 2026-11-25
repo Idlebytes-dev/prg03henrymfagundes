@@ -5,12 +5,16 @@ import br.com.ifba.usuario.entity.Usuario;
 import jakarta.persistence.EntityManager;
 import java.util.List;
 import java.util.function.Supplier;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UsuarioDao extends GenericDao<Usuario> implements UsuarioIDao {
     public UsuarioDao() {
         super(Usuario.class);
     }
 
+    @Autowired
     public UsuarioDao(Supplier<EntityManager> managers) {
         super(Usuario.class, managers);
     }

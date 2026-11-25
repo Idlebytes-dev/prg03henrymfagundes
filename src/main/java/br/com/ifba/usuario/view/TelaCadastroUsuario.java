@@ -5,14 +5,18 @@
 package br.com.ifba.usuario.view;
 
 import br.com.ifba.usuario.dto.DadosUsuario;
-import br.com.ifba.ApexOptima;
+import br.com.ifba.ApexOptimaApplication;
 import br.com.ifba.infrastructure.view.TarefaDaInterface;
 import br.com.ifba.usuario.controller.UsuarioIController;
 import java.util.Objects;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 /**
  *
  * @author henrymf
  */
+@Component
+@Scope("prototype")
 public class TelaCadastroUsuario extends javax.swing.JFrame {
     
     private final UsuarioIController usuarios;
@@ -209,7 +213,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        ApexOptima.iniciar(args, (usuarios, perfis) -> new TelaCadastroUsuario(usuarios));
+        ApexOptimaApplication.iniciar(args, TelaCadastroUsuario.class);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

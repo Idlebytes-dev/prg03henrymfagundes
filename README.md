@@ -21,6 +21,15 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 18: Migrations](ATIVIDADES/ATIVIDADE%2018%20-%20MIGRATIONS)
 - [Atividade 19: DAO](ATIVIDADES/ATIVIDADE%2019%20-%20DAO)
 - [Atividade 20: Arquitetura em camadas](ATIVIDADES/ATIVIDADE%2020%20-%20CAMADAS)
+- [Atividade 22: Spring no desktop](ATIVIDADES/ATIVIDADE%2022%20-%20SPRING)
+
+## Atividade 22 — Spring no desktop
+
+Execute `./mvnw spring-boot:run` para abrir a tela de login ou rode `br.com.ifba.ApexOptimaApplication` na IDE. O starter básico carrega o contexto Spring. As telas Swing são criadas na thread gráfica conforme o usuário navega. Cada formulário tem sua própria instância e recebe as dependências pelo construtor.
+
+A conexão PostgreSQL é configurada em `src/main/resources/application.properties`. Para usar outro banco, defina `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME` e `SPRING_DATASOURCE_PASSWORD` no ambiente, ou preencha essas propriedades em `config/application.properties` na raiz do projeto. Esse arquivo local é ignorado pelo Git. Na inicialização, o Flyway aplica as migrations e o Hibernate valida o schema. Para executar só essa verificação, use `./mvnw spring-boot:run -Dspring-boot.run.arguments=--validar-banco`.
+
+A suíte de integração continua usando as variáveis `APEXOPTIMA_TEST_*` da Atividade 18. Execute `./mvnw -Pintegracao clean verify` com um banco de testes. Os testes de serviço usam os DAOs em memória e podem ser executados com `./mvnw -Dtest='*ServiceTest' test`.
 
 ## Atividade 20 — Arquitetura em camadas
 
@@ -119,10 +128,10 @@ mvnw.cmd clean test
 ```
 
 A aplicação gráfica pode ser iniciada pela classe
-`br.com.ifba.login.view.TelaLogin` na IDE.
+`br.com.ifba.ApexOptimaApplication` na IDE ou pelo comando `./mvnw spring-boot:run`.
 
 
 ## Stack Tecnológica
 - **Java SE 25** (JDK 25)
 - **Maven** (Gerenciamento de dependências)
-- **Spring Boot 3** & **PostgreSQL** (Persistência e APIs)
+- **Spring Boot 4.1.2**, **Hibernate** e **PostgreSQL** (injeção de dependências e persistência)
