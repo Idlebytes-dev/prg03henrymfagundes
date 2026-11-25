@@ -1,0 +1,39 @@
+Isolamento das telas
+
+$ rg --files src/main/java -g '**/view/**/*.java' | sort
+src/main/java/br/com/ifba/infrastructure/view/TarefaDaInterface.java
+src/main/java/br/com/ifba/login/view/TelaLogin.java
+src/main/java/br/com/ifba/usuario/view/TelaCadastroUsuario.java
+src/main/java/br/com/ifba/usuario/view/TelaEdicaoUsuario.java
+src/main/java/br/com/ifba/usuario/view/TelaListagemUsuario.java
+src/main/java/br/com/ifba/usuario/view/TelaPerfis.java
+
+$ rg -n '^\s*import\s+.*(\.dao\.|\.persistence\.)' src/main/java -g '**/view/**/*.java'
+0 ocorrências (código de saída 1).
+
+Services com DAOs em memória
+
+$ ./mvnw -B -o -Dtest='*ServiceTest' test
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 s -- in br.com.ifba.usuario.service.PerfilServiceTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.092 s -- in br.com.ifba.usuario.service.UsuarioServiceTest
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+
+Suíte sem banco
+
+$ ./mvnw -B -o clean test
+[INFO] Tests run: 62, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+
+Suíte completa com PostgreSQL descartável
+
+$ ./mvnw -B -o -Pintegracao clean verify
+[INFO] Tests run: 69, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+
+Fluxos verificados na interface Swing com PostgreSQL descartável
+
+PASS Cadastro, validação de campos obrigatórios, login inválido e login com usuário cadastrado.
+PASS Edição com senha opcional, atualização da listagem e busca de usuários.
+PASS Cadastro, listagem, edição e exclusão confirmada de perfil.
+PASS Exclusão confirmada do usuário e atualização da tabela.

@@ -3,13 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.com.ifba.usuario.view;
-import br.com.ifba.login.view.TelaLogin;
-import br.com.ifba.usuario.validar.ValidadorUsuario;
-import br.com.ifba.usuario.entity.Usuario;
+
+import br.com.ifba.usuario.dto.DadosUsuario;
 import br.com.ifba.ApexOptima;
 import br.com.ifba.infrastructure.view.TarefaDaInterface;
-import br.com.ifba.usuario.dao.UsuarioDao;
-import br.com.ifba.usuario.dao.UsuarioIDao;
+import br.com.ifba.usuario.controller.UsuarioIController;
 import java.util.Objects;
 /**
  *
@@ -17,26 +15,12 @@ import java.util.Objects;
  */
 public class TelaCadastroUsuario extends javax.swing.JFrame {
     
-    private final UsuarioIDao usuarioDao;
+    private final UsuarioIController usuarios;
 
-    /**
-     * Creates new form TelaCadastroUsuario
-     */
-    public TelaCadastroUsuario() {
-        this(new UsuarioDao());
-    }
-
-    public TelaCadastroUsuario(UsuarioIDao usuarioDao) {
-        this.usuarioDao = Objects.requireNonNull(usuarioDao);
+    public TelaCadastroUsuario(UsuarioIController usuarios) {
+        this.usuarios = Objects.requireNonNull(usuarios);
         initComponents();
-        var barra = new javax.swing.JMenuBar();
-        var menu = new javax.swing.JMenu("Usuários");
-        var listar = new javax.swing.JMenuItem("Listar usuários");
-        listar.addActionListener(event -> new TelaListagemUsuario(usuarioDao).setVisible(true));
-        menu.add(listar);
-        barra.add(menu);
-        setJMenuBar(barra);
-        pack();
+        setTitle("ApexOptima - Cadastro de usuário");
     }
 
     /**
@@ -69,7 +53,7 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
         btnSignUp = new javax.swing.JButton();
         btnCancelSigup = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 25));
 
         lblName.setText("Nome completo:");
@@ -208,89 +192,24 @@ public class TelaCadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_cbGenderActionPerformed
 
     private void btnCancelSigupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelSigupActionPerformed
-        //
-        TelaLogin telaLogin = new TelaLogin(usuarioDao);
-        telaLogin.setVisible(true);
-        
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_btnCancelSigupActionPerformed
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        //Capture text inputs into local variables
-        String name = txtName.getText().trim();
-        String cpf = txtCpf.getText().trim();
-        String gender = (String) cbGender.getSelectedItem();
-        String birthDay = txtBirthday.getText().trim();
-        String phoneNumber = txtPhonenumber.getText().trim();
-        String email = txtEmail.getText().trim();
-        String login = txtUser.getText().trim();
-        
-        //Capture password inputs
-        String password = new String(txtPassword1.getPassword());
-        String confirmPassword = new String(txtPassword2.getPassword());
-        
-        if (!ValidadorUsuario.camposPreenchidos(
-                name, cpf, gender, birthDay, phoneNumber, email, login,
-                password, confirmPassword)) {
-            
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Preencha todos os  campos",
-                    "Erro",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        } else if (!ValidadorUsuario.cpfValido(cpf)) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "CPF invalido",
-                    "Erro",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        } else if (!ValidadorUsuario.senhasConferem(password, confirmPassword)) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "As senhas nao coincidem",
-                    "Erro",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        } else if (ValidadorUsuario.contemPalavraProibida(login)) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Login contem palavra nao permitida",
-                    "Erro",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        } else {
-            
-            
-            //Creates new User object and passes it the registration input
-            Usuario usuario = new Usuario();
-            
-            usuario.setName(name);
-            usuario.setCpf(cpf);
-            usuario.setGender(gender);
-            usuario.setBirthDay(birthDay);
-            usuario.setPhoneNumber(phoneNumber);
-            usuario.setEmail(email);
-            usuario.setLogin(login);
-            usuario.setPassword(password);
-
-            TarefaDaInterface.executar(this, btnSignUp, () -> usuarioDao.save(usuario), salvo ->
-                javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Usuário " + salvo.getName() + " cadastrado com sucesso!",
-                    "Cadastro",
-                    javax.swing.JOptionPane.INFORMATION_MESSAGE
-                ));
-            return;
-        }
+        var dados = new DadosUsuario(txtName.getText(), txtCpf.getText(), (String) cbGender.getSelectedItem(),
+                txtBirthday.getText(), txtPhonenumber.getText(), txtEmail.getText(), txtUser.getText(),
+                new String(txtPassword1.getPassword()), new String(txtPassword2.getPassword()), null);
+        TarefaDaInterface.executar(this, btnSignUp, () -> usuarios.cadastrar(dados), salvo -> {
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuário " + salvo.getName() + " cadastrado com sucesso!");
+            dispose();
+        });
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        ApexOptima.iniciar(args, TelaCadastroUsuario::new);
+        ApexOptima.iniciar(args, (usuarios, perfis) -> new TelaCadastroUsuario(usuarios));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

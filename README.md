@@ -20,6 +20,15 @@ Projeto desenvolvido para as disciplinas de **Programação Orientada a Objetos*
 - [Atividade 15: Collections](ATIVIDADES/ATIVIDADE%2015%20-%20COLLECTIONS)
 - [Atividade 18: Migrations](ATIVIDADES/ATIVIDADE%2018%20-%20MIGRATIONS)
 - [Atividade 19: DAO](ATIVIDADES/ATIVIDADE%2019%20-%20DAO)
+- [Atividade 20: Arquitetura em camadas](ATIVIDADES/ATIVIDADE%2020%20-%20CAMADAS)
+
+## Atividade 20 — Arquitetura em camadas
+
+As telas de usuários e perfis chamam os controllers. Cada controller recebe a interface do seu service, que recebe a interface do DAO. A classe `ApexOptima` monta essas dependências na inicialização.
+
+Na tela de login, use **Cadastre-se** para criar um usuário. Entre com o login e a senha cadastrados para abrir a listagem. Nela você pode buscar, cadastrar, editar e excluir usuários. Deixe os dois campos de senha vazios na edição para manter a senha atual. O botão **Perfis** abre a manutenção de perfis. Selecione um perfil para editar ou excluir, ou clique em **Novo** para iniciar um cadastro.
+
+`UsuarioService` valida os campos obrigatórios, o CPF, o login e a confirmação da senha. `PerfilService` verifica o nome obrigatório e único e os limites de nome e descrição. Para testar essas regras sem configurar o banco, execute `./mvnw -Dtest='*ServiceTest' test`. Os resultados dos testes, da verificação das telas e da busca por imports de persistência estão na [evidência da atividade](ATIVIDADES/ATIVIDADE%2020%20-%20CAMADAS/verificacao.txt).
 
 ## Atividade 19: Camada de acesso a dados
 
