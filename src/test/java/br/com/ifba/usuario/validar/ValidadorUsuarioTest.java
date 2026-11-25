@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 
 class ValidadorUsuarioTest {
 
-    // Happy paths
-
     @Test
-    void deveAceitarCamposPreenchidos() {
+    void deveAceitarCadastroComTodosOsCamposPreenchidos() {
         assertTrue(ValidadorUsuario.camposPreenchidos(
                 "Maria", "12345678909", "Feminino", "01/01/2000",
                 "71999999999", "maria@email.com", "maria",
@@ -31,8 +29,6 @@ class ValidadorUsuarioTest {
     void deveIdentificarTextoSemPalavraProibida() {
         assertFalse(ValidadorUsuario.contemPalavraProibida("maria"));
     }
-
-    // Limit and invalid-input edge cases
 
     @Test
     void deveRejeitarCamposNulosVaziosOuEmBranco() {
